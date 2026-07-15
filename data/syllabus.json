@@ -70,5 +70,29 @@
   "shona_explanation": "Scope inosarudza kuti variable inogona kushandiswa kupi. Variable yakasikwa mukati mefunction inonzi local — inongovapo mukati mefunction iyoyo chete uye haigone kushandiswa kunze kwayo.",
   "example_code": "def set_score():\n    score = 90\n    print(score)\n\nset_score()\nprint(score)  # NameError: score is not defined here",
   "common_mistakes": "Trying to use a variable outside the function it was created in, causing a NameError."
+},
+{
+  "id": "data_structures_lists",
+  "topic": "Lists",
+  "english_explanation": "A list stores multiple values in a single ordered collection. You can access items by their position (index), starting from 0, and lists can be changed after creation.",
+  "shona_explanation": "List inochengeta zvinhu zvakawanda mune imwe collection yakarongwa. Unogona kuwana zvinhu nechinzvimbo chazvo (index), kutanga na0, uye ma list anogona kuchinjwa mushure mekusikwa.",
+  "example_code": "crops = [\"maize\", \"sorghum\", \"groundnuts\"]\nprint(crops[0])      # maize\ncrops.append(\"cotton\")\nprint(crops)",
+  "common_mistakes": "Forgetting that indexing starts at 0, not 1 — so crops[1] gives the second item, not the first."
+},
+{
+  "id": "data_structures_dictionaries",
+  "topic": "Dictionaries",
+  "english_explanation": "A dictionary stores data as key-value pairs, letting you look up a value using a meaningful name (the key) instead of a numeric position.",
+  "shona_explanation": "Dictionary inochengeta data seKey-value pairs, ichikubvumira kutsvaga value uchishandisa zita rine musimboti (key) pane chinzvimbo chenhamba.",
+  "example_code": "student = {\"name\": \"Tsungirirai\", \"age\": 24, \"course\": \"Data Analysis\"}\nprint(student[\"name\"])",
+  "common_mistakes": "Trying to access a key that doesn't exist, which causes a KeyError — checking with `.get()` avoids this."
+},
+{
+  "id": "data_structures_strings",
+  "topic": "Basic String Manipulation",
+  "english_explanation": "Strings are text values that support useful built-in operations like joining (+), repeating (*), slicing (extracting part of the text), and methods like .upper(), .lower(), and .split().",
+  "shona_explanation": "Strings ma value emanyoro anotsigira mabasa akakosha akaumbwa kare senge kubatanidza (+), kudzokorora (*), slicing (kubvisa chikamu chemanyoro), nemamethods senge .upper(), .lower(), uye .split().",
+  "example_code": "name = \"tsungirirai\"\nprint(name.upper())       # TSUNGIRIRAI\nprint(name[0:4])          # tsun",
+  "common_mistakes": "Forgetting that strings are immutable — methods like .upper() return a new string rather than changing the original in place."
 }
 ]
