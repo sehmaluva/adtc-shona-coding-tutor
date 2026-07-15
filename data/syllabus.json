@@ -46,5 +46,29 @@
   "shona_explanation": "While loop inodzokorora chikamu chekodhi kana condition ichiri kuramba iri chokwadi (true). Kusiyana ne-for loop, inoshandiswa kana usingazivi kare kuti kudzokorora kunodiwa kangani.",
   "example_code": "attempts = 0\nwhile attempts < 3:\n    print(\"Attempt\", attempts + 1)\n    attempts += 1",
   "common_mistakes": "Forgetting to update the loop variable inside the loop, which causes an infinite loop that never stops."
- }
+ },
+ {
+  "id": "functions_define_call",
+  "topic": "Defining and Calling Functions",
+  "english_explanation": "A function is a reusable block of code that performs a specific task. You define it once using the def keyword, then call it by name whenever you need it, avoiding repeated code.",
+  "shona_explanation": "Function chikamu chekodhi chinogona kushandiswa kazhinji chinoita basa rakati chaiye. Unoisika kamwe uchishandisa izwi rekuti def, wobva waidana nezita rayo pese paunoida, uchidzivirira kudzokorodza kodhi.",
+  "example_code": "def greet(name):\n    print(\"Hello, \" + name)\n\ngreet(\"Tsungirirai\")",
+  "common_mistakes": "Forgetting the colon (:) after the function definition line, or forgetting to actually call the function after defining it."
+ },
+ {
+  "id": "functions_params_return",
+  "topic": "Parameters and Return Values",
+  "english_explanation": "Parameters let you pass information into a function so it can work with different inputs. The return keyword sends a value back out of the function so it can be used elsewhere in your program.",
+  "shona_explanation": "Parameters dzinobvumira kuti upinze ruzivo mufunction kuti ishande neinputs dzakasiyana. Izwi rekuti return rinotumira value kunze kwefunction kuti ishandiswe pane imwe nzvimbo muprogiramu yako.",
+  "example_code": "def calculate_total(price, quantity):\n    return price * quantity\n\ntotal = calculate_total(2.5, 10)\nprint(total)",
+  "common_mistakes": "Confusing print() (just displays a value) with return (actually sends the value back for further use) — a function without return gives back None."
+},
+{
+  "id": "functions_scope",
+  "topic": "Variable Scope",
+  "english_explanation": "Scope determines where a variable can be accessed. A variable created inside a function is local — it only exists inside that function and cannot be used outside it.",
+  "shona_explanation": "Scope inosarudza kuti variable inogona kushandiswa kupi. Variable yakasikwa mukati mefunction inonzi local — inongovapo mukati mefunction iyoyo chete uye haigone kushandiswa kunze kwayo.",
+  "example_code": "def set_score():\n    score = 90\n    print(score)\n\nset_score()\nprint(score)  # NameError: score is not defined here",
+  "common_mistakes": "Trying to use a variable outside the function it was created in, causing a NameError."
+}
 ]
