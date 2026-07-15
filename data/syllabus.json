@@ -22,5 +22,29 @@
     "shona_explanation": "print() inoratidza ruzivo pascreen. input() inomira purogiramu ichimirira kuti mushandisi anyore chimwe chinhu, izvo zvinodzoswa senge manyoro (str) nguva dzose.",
     "example_code": "name = input(\"What is your name? \")\nprint(\"Hello, \" + name)",
     "common_mistakes": "Forgetting that input() always returns text — trying to do math directly on it without converting with int() or float() first causes a TypeError."
-  }
+  },
+  {
+  "id": "control_if_else",
+  "topic": "If/Else Conditionals",
+  "english_explanation": "An if statement lets your program make decisions — it runs a block of code only if a condition is true. Else runs a different block when the condition is false.",
+  "shona_explanation": "If statement inobvumira purogiramu yako kuita sarudzo — inoshanda chikamu chekodhi chero condition iri chokwadi (true) chete. Else inoshanda chimwe chikamu kana condition isiri chokwadi (false).",
+  "example_code": "yield_kg = 8\nif yield_kg >= 10:\n    print(\"Good harvest\")\nelse:\n    print(\"Below target\")",
+  "common_mistakes": "Using = (assignment) instead of == (comparison) inside the condition."
+ },
+ {
+  "id": "control_for_loop",
+  "topic": "For Loops",
+  "english_explanation": "A for loop repeats a block of code once for each item in a sequence, such as a list or a range of numbers. It's ideal when you know how many times something should repeat.",
+  "shona_explanation": "For loop inodzokorora chikamu chekodhi kamwe nekamwe pane chinhu chimwe nechimwe chiri musequence, semuenzaniso list kana range yenhamba. Inoshandiswa zvakanaka kana uchiziva kuti chinhu chinofanira kudzokororwa kangani.",
+  "example_code": "villages = [\"Nembudziya\", \"Chireya\", \"Gokwe\"]\nfor village in villages:\n    print(village)",
+  "common_mistakes": "Forgetting the colon (:) at the end of the for line, or incorrect indentation of the loop body."
+ },
+ {
+  "id": "control_while_loop",
+  "topic": "While Loops",
+  "english_explanation": "A while loop repeats a block of code as long as a condition stays true. Unlike a for loop, it's used when you don't know in advance how many repetitions are needed.",
+  "shona_explanation": "While loop inodzokorora chikamu chekodhi kana condition ichiri kuramba iri chokwadi (true). Kusiyana ne-for loop, inoshandiswa kana usingazivi kare kuti kudzokorora kunodiwa kangani.",
+  "example_code": "attempts = 0\nwhile attempts < 3:\n    print(\"Attempt\", attempts + 1)\n    attempts += 1",
+  "common_mistakes": "Forgetting to update the loop variable inside the loop, which causes an infinite loop that never stops."
+ }
 ]
