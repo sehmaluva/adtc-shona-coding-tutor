@@ -94,5 +94,37 @@
   "shona_explanation": "Strings ma value emanyoro anotsigira mabasa akakosha akaumbwa kare senge kubatanidza (+), kudzokorora (*), slicing (kubvisa chikamu chemanyoro), nemamethods senge .upper(), .lower(), uye .split().",
   "example_code": "name = \"tsungirirai\"\nprint(name.upper())       # TSUNGIRIRAI\nprint(name[0:4])          # tsun",
   "common_mistakes": "Forgetting that strings are immutable — methods like .upper() return a new string rather than changing the original in place."
+},
+{
+  "id": "algorithms_sorting",
+  "topic": "Sorting Numbers",
+  "english_explanation": "Sorting arranges values in order, usually smallest to largest. Bubble sort repeatedly compares neighboring items and swaps them if out of order, but it's slow for large lists. Python's built-in sorted() or .sort() is much faster and used in real programs.",
+  "shona_explanation": "Kuronga (sorting) kunoisa ma value muorder, kazhinji kubva pane diki kusvika pane hombe. Bubble sort inoenzanisa zvinhu zviri pedyo nekamwe nekamwe ichizvichinjanisa kana zvisiri muorder, asi inononoka pama list makuru. Python's sorted() kana .sort() inokurumidza zvakanyanya uye inoshandiswa mumaprogiramu chaiwo.",
+  "example_code": "yields = [12, 8, 15, 3, 20]\nsorted_yields = sorted(yields)\nprint(sorted_yields)  # [3, 8, 12, 15, 20]",
+  "common_mistakes": "Assuming sorted() changes the original list — it doesn't; .sort() does, but sorted() returns a new list instead."
+},
+{
+  "id": "algorithms_linear_search",
+  "topic": "Linear Search",
+  "english_explanation": "Linear search checks each item in a list one by one until it finds the target value or reaches the end. It's simple but can be slow on large lists since it may need to check every item.",
+  "shona_explanation": "Linear search inoongorora chinhu chimwe nechimwe muList kamwe nekamwe kusvikira yawana target value kana kusvika kumagumo. Iri nyore asi inogona kunonoka pama list makuru sezvo ingada kuongorora chinhu chimwe nechimwe.",
+  "example_code": "villages = [\"Nembudziya\", \"Chireya\", \"Gokwe\"]\ntarget = \"Chireya\"\nfor v in villages:\n    if v == target:\n        print(\"Found:\", v)\n        break",
+  "common_mistakes": "Forgetting to break out of the loop once the item is found, which wastes time continuing to search unnecessarily."
+},
+{
+  "id": "algorithms_binary_search",
+  "topic": "Binary Search",
+  "english_explanation": "Binary search finds a value much faster by repeatedly checking the middle of a sorted list and eliminating half the remaining items each time. It only works on data that is already sorted.",
+  "shona_explanation": "Binary search inowana value nekukurumidza zvakanyanya nekuongorora nharaunda yepakati peList rakarongwa (sorted) kagara kagara, ichibvisa hafu yezvasara pane imwe neimwe nguva. Inoshanda chete pane data iri kutorongwa (sorted) kare.",
+  "example_code": "numbers = [3, 8, 12, 15, 20]\nlow, high = 0, len(numbers) - 1\nwhile low <= high:\n    mid = (low + high) // 2\n    if numbers[mid] == 15:\n        print(\"Found at index\", mid)\n        break\n    elif numbers[mid] < 15:\n        low = mid + 1\n    else:\n        high = mid - 1",
+  "common_mistakes": "Using binary search on an unsorted list — it will give wrong or missing results because the algorithm assumes order."
+},
+{
+  "id": "algorithms_big_o",
+  "topic": "Big-O Notation (Why Some Code Is Slow)",
+  "english_explanation": "Big-O describes how an algorithm's running time grows as the amount of data grows. O(n) means time grows in direct proportion to data size (like linear search), while O(log n) means time grows very slowly even with much more data (like binary search) — this is why binary search is dramatically faster on large datasets.",
+  "shona_explanation": "Big-O inotsanangura kuti nguva yekushanda kwealgorithm inowedzera sei kana data ichiwedzera. O(n) zvinoreva kuti nguva inowedzera zvakaenzana nehukuru hwedata (semuenzaniso linear search), asi O(log n) zvinoreva kuti nguva inowedzera zvishoma nezvishoma kunyangwe data yakawanda (semuenzaniso binary search) — ndosaka binary search ichikurumidza zvakanyanya pane data hombe.",
+  "example_code": "# Linear search: checks up to n items -> O(n)\n# Binary search: checks up to log(n) items -> O(log n)\n# For 1,000,000 items: linear could check 1,000,000; binary needs about 20",
+  "common_mistakes": "Assuming a 'faster-looking' algorithm is always better for small data — Big-O matters most as data size grows large; for tiny lists, the difference is negligible."
 }
 ]
