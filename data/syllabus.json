@@ -1,0 +1,26 @@
+[
+  {
+    "id": "basics_variables",
+    "topic": "Variables",
+    "english_explanation": "A variable is a named container that stores a value in memory so your program can use it later. You create one by choosing a name and assigning it a value with the = sign.",
+    "shona_explanation": "Variable inzvimbo ine zita rakachengeta value muhurongwa hwepurogiramu, iyo unogona kushandisa gare gare. Unosika imwe nekusarudza zita wobva waipa value uchishandisa chiratidzo =.",
+    "example_code": "maize_yield = 12  # kilograms harvested\nprint(maize_yield)",
+    "common_mistakes": "Using a variable before assigning it a value, or using a name that starts with a number (not allowed in Python)."
+  },
+  {
+    "id": "basics_data_types",
+    "topic": "Data Types (int, float, str, bool)",
+    "english_explanation": "Python values have types that determine what operations are allowed on them. The main basic types are int (whole numbers), float (decimal numbers), str (text), and bool (True/False).",
+    "shona_explanation": "Ma value ekuPython ane types dzinosarudza kuti mabasa api anobvumirwa pavari. Ma basic types makuru ndeekuti int (nhamba dzakazara), float (nhamba dzine decimal), str (mavara/manyoro), uye bool (True/False).",
+    "example_code": "students = 30        # int\nprice = 15.50        # float\nname = \"Tsungirirai\" # str\npassed = True         # bool",
+    "common_mistakes": "Assuming numbers typed inside quotes (like \"5\") are still numbers — they're actually text (str) and can't be used in math directly."
+  },
+  {
+    "id": "basics_input_output",
+    "topic": "Input and Output (input(), print())",
+    "english_explanation": "print() displays information to the screen. input() pauses the program and waits for the user to type something, which is always returned as text (str).",
+    "shona_explanation": "print() inoratidza ruzivo pascreen. input() inomira purogiramu ichimirira kuti mushandisi anyore chimwe chinhu, izvo zvinodzoswa senge manyoro (str) nguva dzose.",
+    "example_code": "name = input(\"What is your name? \")\nprint(\"Hello, \" + name)",
+    "common_mistakes": "Forgetting that input() always returns text — trying to do math directly on it without converting with int() or float() first causes a TypeError."
+  }
+]
