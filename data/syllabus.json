@@ -126,5 +126,45 @@
   "shona_explanation": "Big-O inotsanangura kuti nguva yekushanda kwealgorithm inowedzera sei kana data ichiwedzera. O(n) zvinoreva kuti nguva inowedzera zvakaenzana nehukuru hwedata (semuenzaniso linear search), asi O(log n) zvinoreva kuti nguva inowedzera zvishoma nezvishoma kunyangwe data yakawanda (semuenzaniso binary search) — ndosaka binary search ichikurumidza zvakanyanya pane data hombe.",
   "example_code": "# Linear search: checks up to n items -> O(n)\n# Binary search: checks up to log(n) items -> O(log n)\n# For 1,000,000 items: linear could check 1,000,000; binary needs about 20",
   "common_mistakes": "Assuming a 'faster-looking' algorithm is always better for small data — Big-O matters most as data size grows large; for tiny lists, the difference is negligible."
+},
+{
+  "id": "debug_syntaxerror",
+  "topic": "Understanding SyntaxError",
+  "english_explanation": "A SyntaxError means Python cannot understand the structure of your code — often caused by a missing colon, unmatched bracket, or incorrect indentation. It happens before the program even runs.",
+  "shona_explanation": "SyntaxError zvinoreva kuti Python haigone kunzwisisa structure yekodhi yako — kazhinji inokonzerwa nekushaikwa kwe colon, ma bracket asina kuenzana, kana indentation isiriyo. Inoitika purogiramu isati yatomboita chero chinhu.",
+  "example_code": "if age >= 18\n    print(\"Adult\")\n# Missing colon after the condition causes a SyntaxError",
+  "common_mistakes": "Forgetting the colon (:) after if, for, while, or def statements — one of the most common beginner errors."
+},
+{
+  "id": "debug_typeerror",
+  "topic": "Understanding TypeError",
+  "english_explanation": "A TypeError happens when you try to use a value in a way that doesn't match its type — like adding a number to text. Python tells you exactly which operation failed.",
+  "shona_explanation": "TypeError inoitika kana ukaedza kushandisa chinhu (value) nenzira isiriyo maererano nerudzi rwacho — semuenzaniso kuwedzera nhamba pamwe chete netext. Python inokuudza chaizvo kuti chii chakatadza.",
+  "example_code": "age = \"20\"\nprint(age + 5)  # TypeError: can't add str and int",
+  "common_mistakes": "Mixing string and integer types without converting one first (e.g. using int() or str())."
+},
+{
+  "id": "debug_indexerror",
+  "topic": "Understanding IndexError",
+  "english_explanation": "An IndexError occurs when you try to access a list position that doesn't exist — for example, asking for the 5th item in a list that only has 3 items.",
+  "shona_explanation": "IndexError inoitika kana ukaedza kuwana chinzvimbo cheList chisipo — semuenzaniso kukumbira chinhu chechishanu muList ine zvinhu zvitatu chete.",
+  "example_code": "crops = [\"maize\", \"sorghum\"]\nprint(crops[5])  # IndexError: list index out of range",
+  "common_mistakes": "Forgetting that list indices start at 0 and end at length-1, so trying to access index equal to the list's length always fails."
+},
+{
+  "id": "debug_nameerror",
+  "topic": "Understanding NameError",
+  "english_explanation": "A NameError happens when you try to use a variable or function that hasn't been defined yet, often due to a typo or using it before it's created.",
+  "shona_explanation": "NameError inoitika kana ukaedza kushandisa variable kana function isati yamboiswa (defined), kazhinji nekuda kwekukanganisa mavara kana kuishandisa isati yasikwa.",
+  "example_code": "print(total)  # NameError: total is not defined\ntotal = 100",
+  "common_mistakes": "Using a variable before it's assigned, or misspelling a variable name that was defined earlier (e.g. Total vs total)."
+},
+{
+  "id": "debug_reading_traceback",
+  "topic": "How to Read a Traceback",
+  "english_explanation": "A traceback shows exactly where an error occurred, listing the file, line number, and the specific error type at the bottom. Always read the last line first — it names the actual error.",
+  "shona_explanation": "Traceback inoratidza chaizvo kuti error yaitika kupi, ichiratidza file, line number, uye rudzi rweerror pasi pese. Nguva dzose verenga line yekupedzisira kutanga — ndiyo inotaura error chaiyo.",
+  "example_code": "# Example traceback (read bottom line first):\n# Traceback (most recent call last):\n#   File \"tutor.py\", line 4\n#     print(total)\n# NameError: name 'total' is not defined",
+  "common_mistakes": "Reading tracebacks top-to-bottom and getting confused by file paths — the actual error type and message is always at the very bottom."
 }
 ]
