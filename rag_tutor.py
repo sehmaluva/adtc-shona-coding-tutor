@@ -13,7 +13,7 @@ with open("data/syllabus_map.json", "r", encoding="utf-8") as f:
 llm = Llama(
     model_path="./models/Phi-3.5-mini-instruct-Q4_K_M.gguf",
     n_ctx=2048,
-    n_threads=4,
+    n_threads=8,
     verbose=False
 )
 
