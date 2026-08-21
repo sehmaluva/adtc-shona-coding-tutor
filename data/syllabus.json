@@ -5,7 +5,11 @@
     "english_explanation": "A variable is a named container that stores a value in memory so your program can use it later. You create one by choosing a name and assigning it a value with the = sign.",
     "shona_explanation": "Variable inzvimbo ine zita rakachengeta value muhurongwa hwepurogiramu, iyo unogona kushandisa gare gare. Unosika imwe nekusarudza zita wobva waipa value uchishandisa chiratidzo =.",
     "example_code": "maize_yield = 12  # kilograms harvested\nprint(maize_yield)",
-    "common_mistakes": "Using a variable before assigning it a value, or using a name that starts with a number (not allowed in Python)."
+    "common_mistakes": "Using a variable before assigning it a value, or using a name that starts with a number (not allowed in Python).",
+    "practice_questions_shona": [
+      "Nyora variable inonzi 'age' ine value ya20, wobva waiprinda.",
+      "Chii chinoitika kana ukaedza kushandisa variable isati yaiswa value?"
+    ]
   },
   {
     "id": "basics_data_types",
@@ -13,7 +17,11 @@
     "english_explanation": "Python values have types that determine what operations are allowed on them. The main basic types are int (whole numbers), float (decimal numbers), str (text), and bool (True/False).",
     "shona_explanation": "Ma value ekuPython ane types dzinosarudza kuti mabasa api anobvumirwa pavari. Ma basic types makuru ndeekuti int (nhamba dzakazara), float (nhamba dzine decimal), str (mavara/manyoro), uye bool (True/False).",
     "example_code": "students = 30        # int\nprice = 15.50        # float\nname = \"Tsungirirai\" # str\npassed = True         # bool",
-    "common_mistakes": "Assuming numbers typed inside quotes (like \"5\") are still numbers — they're actually text (str) and can't be used in math directly."
+    "common_mistakes": "Assuming numbers typed inside quotes (like \"5\") are still numbers — they're actually text (str) and can't be used in math directly.",
+    "practice_questions_shona": [
+      "Rudzii rwe data type rwe value 'True'?",
+      "Nyora variable ine rudzi rwe float uye variable ine rudzi rwe str."
+    ]
   },
   {
     "id": "basics_input_output",
@@ -21,150 +29,226 @@
     "english_explanation": "print() displays information to the screen. input() pauses the program and waits for the user to type something, which is always returned as text (str).",
     "shona_explanation": "print() inoratidza ruzivo pascreen. input() inomira purogiramu ichimirira kuti mushandisi anyore chimwe chinhu, izvo zvinodzoswa senge manyoro (str) nguva dzose.",
     "example_code": "name = input(\"What is your name? \")\nprint(\"Hello, \" + name)",
-    "common_mistakes": "Forgetting that input() always returns text — trying to do math directly on it without converting with int() or float() first causes a TypeError."
+    "common_mistakes": "Forgetting that input() always returns text — trying to do math directly on it without converting with int() or float() first causes a TypeError.",
+    "practice_questions_shona": [
+      "Nyora kodhi inobvunza mushandisi zita rake wobva waiprinda mashoko okuti 'Mhoro, [zita]'.",
+      "Nei input() ichidzosa manyoro (str) kunyangwe mushandisi anyore nhamba?"
+    ]
   },
   {
-  "id": "control_if_else",
-  "topic": "If/Else Conditionals",
-  "english_explanation": "An if statement lets your program make decisions — it runs a block of code only if a condition is true. Else runs a different block when the condition is false.",
-  "shona_explanation": "If statement inobvumira purogiramu yako kuita sarudzo — inoshanda chikamu chekodhi chero condition iri chokwadi (true) chete. Else inoshanda chimwe chikamu kana condition isiri chokwadi (false).",
-  "example_code": "yield_kg = 8\nif yield_kg >= 10:\n    print(\"Good harvest\")\nelse:\n    print(\"Below target\")",
-  "common_mistakes": "Using = (assignment) instead of == (comparison) inside the condition."
- },
- {
-  "id": "control_for_loop",
-  "topic": "For Loops",
-  "english_explanation": "A for loop repeats a block of code once for each item in a sequence, such as a list or a range of numbers. It's ideal when you know how many times something should repeat.",
-  "shona_explanation": "For loop inodzokorora chikamu chekodhi kamwe nekamwe pane chinhu chimwe nechimwe chiri musequence, semuenzaniso list kana range yenhamba. Inoshandiswa zvakanaka kana uchiziva kuti chinhu chinofanira kudzokororwa kangani.",
-  "example_code": "villages = [\"Nembudziya\", \"Chireya\", \"Gokwe\"]\nfor village in villages:\n    print(village)",
-  "common_mistakes": "Forgetting the colon (:) at the end of the for line, or incorrect indentation of the loop body."
- },
- {
-  "id": "control_while_loop",
-  "topic": "While Loops",
-  "english_explanation": "A while loop repeats a block of code as long as a condition stays true. Unlike a for loop, it's used when you don't know in advance how many repetitions are needed.",
-  "shona_explanation": "While loop inodzokorora chikamu chekodhi kana condition ichiri kuramba iri chokwadi (true). Kusiyana ne-for loop, inoshandiswa kana usingazivi kare kuti kudzokorora kunodiwa kangani.",
-  "example_code": "attempts = 0\nwhile attempts < 3:\n    print(\"Attempt\", attempts + 1)\n    attempts += 1",
-  "common_mistakes": "Forgetting to update the loop variable inside the loop, which causes an infinite loop that never stops."
- },
- {
-  "id": "functions_define_call",
-  "topic": "Defining and Calling Functions",
-  "english_explanation": "A function is a reusable block of code that performs a specific task. You define it once using the def keyword, then call it by name whenever you need it, avoiding repeated code.",
-  "shona_explanation": "Function chikamu chekodhi chinogona kushandiswa kazhinji chinoita basa rakati chaiye. Unoisika kamwe uchishandisa izwi rekuti def, wobva waidana nezita rayo pese paunoida, uchidzivirira kudzokorodza kodhi.",
-  "example_code": "def greet(name):\n    print(\"Hello, \" + name)\n\ngreet(\"Tsungirirai\")",
-  "common_mistakes": "Forgetting the colon (:) after the function definition line, or forgetting to actually call the function after defining it."
- },
- {
-  "id": "functions_params_return",
-  "topic": "Parameters and Return Values",
-  "english_explanation": "Parameters let you pass information into a function so it can work with different inputs. The return keyword sends a value back out of the function so it can be used elsewhere in your program.",
-  "shona_explanation": "Parameters dzinobvumira kuti upinze ruzivo mufunction kuti ishande neinputs dzakasiyana. Izwi rekuti return rinotumira value kunze kwefunction kuti ishandiswe pane imwe nzvimbo muprogiramu yako.",
-  "example_code": "def calculate_total(price, quantity):\n    return price * quantity\n\ntotal = calculate_total(2.5, 10)\nprint(total)",
-  "common_mistakes": "Confusing print() (just displays a value) with return (actually sends the value back for further use) — a function without return gives back None."
-},
-{
-  "id": "functions_scope",
-  "topic": "Variable Scope",
-  "english_explanation": "Scope determines where a variable can be accessed. A variable created inside a function is local — it only exists inside that function and cannot be used outside it.",
-  "shona_explanation": "Scope inosarudza kuti variable inogona kushandiswa kupi. Variable yakasikwa mukati mefunction inonzi local — inongovapo mukati mefunction iyoyo chete uye haigone kushandiswa kunze kwayo.",
-  "example_code": "def set_score():\n    score = 90\n    print(score)\n\nset_score()\nprint(score)  # NameError: score is not defined here",
-  "common_mistakes": "Trying to use a variable outside the function it was created in, causing a NameError."
-},
-{
-  "id": "data_structures_lists",
-  "topic": "Lists",
-  "english_explanation": "A list stores multiple values in a single ordered collection. You can access items by their position (index), starting from 0, and lists can be changed after creation.",
-  "shona_explanation": "List inochengeta zvinhu zvakawanda mune imwe collection yakarongwa. Unogona kuwana zvinhu nechinzvimbo chazvo (index), kutanga na0, uye ma list anogona kuchinjwa mushure mekusikwa.",
-  "example_code": "crops = [\"maize\", \"sorghum\", \"groundnuts\"]\nprint(crops[0])      # maize\ncrops.append(\"cotton\")\nprint(crops)",
-  "common_mistakes": "Forgetting that indexing starts at 0, not 1 — so crops[1] gives the second item, not the first."
-},
-{
-  "id": "data_structures_dictionaries",
-  "topic": "Dictionaries",
-  "english_explanation": "A dictionary stores data as key-value pairs, letting you look up a value using a meaningful name (the key) instead of a numeric position.",
-  "shona_explanation": "Dictionary inochengeta data seKey-value pairs, ichikubvumira kutsvaga value uchishandisa zita rine musimboti (key) pane chinzvimbo chenhamba.",
-  "example_code": "student = {\"name\": \"Tsungirirai\", \"age\": 24, \"course\": \"Data Analysis\"}\nprint(student[\"name\"])",
-  "common_mistakes": "Trying to access a key that doesn't exist, which causes a KeyError — checking with `.get()` avoids this."
-},
-{
-  "id": "data_structures_strings",
-  "topic": "Basic String Manipulation",
-  "english_explanation": "Strings are text values that support useful built-in operations like joining (+), repeating (*), slicing (extracting part of the text), and methods like .upper(), .lower(), and .split().",
-  "shona_explanation": "Strings ma value emanyoro anotsigira mabasa akakosha akaumbwa kare senge kubatanidza (+), kudzokorora (*), slicing (kubvisa chikamu chemanyoro), nemamethods senge .upper(), .lower(), uye .split().",
-  "example_code": "name = \"tsungirirai\"\nprint(name.upper())       # TSUNGIRIRAI\nprint(name[0:4])          # tsun",
-  "common_mistakes": "Forgetting that strings are immutable — methods like .upper() return a new string rather than changing the original in place."
-},
-{
-  "id": "algorithms_sorting",
-  "topic": "Sorting Numbers",
-  "english_explanation": "Sorting arranges values in order, usually smallest to largest. Bubble sort repeatedly compares neighboring items and swaps them if out of order, but it's slow for large lists. Python's built-in sorted() or .sort() is much faster and used in real programs.",
-  "shona_explanation": "Kuronga (sorting) kunoisa ma value muorder, kazhinji kubva pane diki kusvika pane hombe. Bubble sort inoenzanisa zvinhu zviri pedyo nekamwe nekamwe ichizvichinjanisa kana zvisiri muorder, asi inononoka pama list makuru. Python's sorted() kana .sort() inokurumidza zvakanyanya uye inoshandiswa mumaprogiramu chaiwo.",
-  "example_code": "yields = [12, 8, 15, 3, 20]\nsorted_yields = sorted(yields)\nprint(sorted_yields)  # [3, 8, 12, 15, 20]",
-  "common_mistakes": "Assuming sorted() changes the original list — it doesn't; .sort() does, but sorted() returns a new list instead."
-},
-{
-  "id": "algorithms_linear_search",
-  "topic": "Linear Search",
-  "english_explanation": "Linear search checks each item in a list one by one until it finds the target value or reaches the end. It's simple but can be slow on large lists since it may need to check every item.",
-  "shona_explanation": "Linear search inoongorora chinhu chimwe nechimwe muList kamwe nekamwe kusvikira yawana target value kana kusvika kumagumo. Iri nyore asi inogona kunonoka pama list makuru sezvo ingada kuongorora chinhu chimwe nechimwe.",
-  "example_code": "villages = [\"Nembudziya\", \"Chireya\", \"Gokwe\"]\ntarget = \"Chireya\"\nfor v in villages:\n    if v == target:\n        print(\"Found:\", v)\n        break",
-  "common_mistakes": "Forgetting to break out of the loop once the item is found, which wastes time continuing to search unnecessarily."
-},
-{
-  "id": "algorithms_binary_search",
-  "topic": "Binary Search",
-  "english_explanation": "Binary search finds a value much faster by repeatedly checking the middle of a sorted list and eliminating half the remaining items each time. It only works on data that is already sorted.",
-  "shona_explanation": "Binary search inowana value nekukurumidza zvakanyanya nekuongorora nharaunda yepakati peList rakarongwa (sorted) kagara kagara, ichibvisa hafu yezvasara pane imwe neimwe nguva. Inoshanda chete pane data iri kutorongwa (sorted) kare.",
-  "example_code": "numbers = [3, 8, 12, 15, 20]\nlow, high = 0, len(numbers) - 1\nwhile low <= high:\n    mid = (low + high) // 2\n    if numbers[mid] == 15:\n        print(\"Found at index\", mid)\n        break\n    elif numbers[mid] < 15:\n        low = mid + 1\n    else:\n        high = mid - 1",
-  "common_mistakes": "Using binary search on an unsorted list — it will give wrong or missing results because the algorithm assumes order."
-},
-{
-  "id": "algorithms_big_o",
-  "topic": "Big-O Notation (Why Some Code Is Slow)",
-  "english_explanation": "Big-O describes how an algorithm's running time grows as the amount of data grows. O(n) means time grows in direct proportion to data size (like linear search), while O(log n) means time grows very slowly even with much more data (like binary search) — this is why binary search is dramatically faster on large datasets.",
-  "shona_explanation": "Big-O inotsanangura kuti nguva yekushanda kwealgorithm inowedzera sei kana data ichiwedzera. O(n) zvinoreva kuti nguva inowedzera zvakaenzana nehukuru hwedata (semuenzaniso linear search), asi O(log n) zvinoreva kuti nguva inowedzera zvishoma nezvishoma kunyangwe data yakawanda (semuenzaniso binary search) — ndosaka binary search ichikurumidza zvakanyanya pane data hombe.",
-  "example_code": "# Linear search: checks up to n items -> O(n)\n# Binary search: checks up to log(n) items -> O(log n)\n# For 1,000,000 items: linear could check 1,000,000; binary needs about 20",
-  "common_mistakes": "Assuming a 'faster-looking' algorithm is always better for small data — Big-O matters most as data size grows large; for tiny lists, the difference is negligible."
-},
-{
-  "id": "debug_syntaxerror",
-  "topic": "Understanding SyntaxError",
-  "english_explanation": "A SyntaxError means Python cannot understand the structure of your code — often caused by a missing colon, unmatched bracket, or incorrect indentation. It happens before the program even runs.",
-  "shona_explanation": "SyntaxError zvinoreva kuti Python haigone kunzwisisa structure yekodhi yako — kazhinji inokonzerwa nekushaikwa kwe colon, ma bracket asina kuenzana, kana indentation isiriyo. Inoitika purogiramu isati yatomboita chero chinhu.",
-  "example_code": "if age >= 18\n    print(\"Adult\")\n# Missing colon after the condition causes a SyntaxError",
-  "common_mistakes": "Forgetting the colon (:) after if, for, while, or def statements — one of the most common beginner errors."
-},
-{
-  "id": "debug_typeerror",
-  "topic": "Understanding TypeError",
-  "english_explanation": "A TypeError happens when you try to use a value in a way that doesn't match its type — like adding a number to text. Python tells you exactly which operation failed.",
-  "shona_explanation": "TypeError inoitika kana ukaedza kushandisa chinhu (value) nenzira isiriyo maererano nerudzi rwacho — semuenzaniso kuwedzera nhamba pamwe chete netext. Python inokuudza chaizvo kuti chii chakatadza.",
-  "example_code": "age = \"20\"\nprint(age + 5)  # TypeError: can't add str and int",
-  "common_mistakes": "Mixing string and integer types without converting one first (e.g. using int() or str())."
-},
-{
-  "id": "debug_indexerror",
-  "topic": "Understanding IndexError",
-  "english_explanation": "An IndexError occurs when you try to access a list position that doesn't exist — for example, asking for the 5th item in a list that only has 3 items.",
-  "shona_explanation": "IndexError inoitika kana ukaedza kuwana chinzvimbo cheList chisipo — semuenzaniso kukumbira chinhu chechishanu muList ine zvinhu zvitatu chete.",
-  "example_code": "crops = [\"maize\", \"sorghum\"]\nprint(crops[5])  # IndexError: list index out of range",
-  "common_mistakes": "Forgetting that list indices start at 0 and end at length-1, so trying to access index equal to the list's length always fails."
-},
-{
-  "id": "debug_nameerror",
-  "topic": "Understanding NameError",
-  "english_explanation": "A NameError happens when you try to use a variable or function that hasn't been defined yet, often due to a typo or using it before it's created.",
-  "shona_explanation": "NameError inoitika kana ukaedza kushandisa variable kana function isati yamboiswa (defined), kazhinji nekuda kwekukanganisa mavara kana kuishandisa isati yasikwa.",
-  "example_code": "print(total)  # NameError: total is not defined\ntotal = 100",
-  "common_mistakes": "Using a variable before it's assigned, or misspelling a variable name that was defined earlier (e.g. Total vs total)."
-},
-{
-  "id": "debug_reading_traceback",
-  "topic": "How to Read a Traceback",
-  "english_explanation": "A traceback shows exactly where an error occurred, listing the file, line number, and the specific error type at the bottom. Always read the last line first — it names the actual error.",
-  "shona_explanation": "Traceback inoratidza chaizvo kuti error yaitika kupi, ichiratidza file, line number, uye rudzi rweerror pasi pese. Nguva dzose verenga line yekupedzisira kutanga — ndiyo inotaura error chaiyo.",
-  "example_code": "# Example traceback (read bottom line first):\n# Traceback (most recent call last):\n#   File \"tutor.py\", line 4\n#     print(total)\n# NameError: name 'total' is not defined",
-  "common_mistakes": "Reading tracebacks top-to-bottom and getting confused by file paths — the actual error type and message is always at the very bottom."
-}
+    "id": "control_if_else",
+    "topic": "If/Else Conditionals",
+    "english_explanation": "An if statement lets your program make decisions — it runs a block of code only if a condition is true. Else runs a different block when the condition is false.",
+    "shona_explanation": "If statement inobvumira purogiramu yako kuita sarudzo — inoshanda chikamu chekodhi chero condition iri chokwadi (true) chete. Else inoshanda chimwe chikamu kana condition isiri chokwadi (false).",
+    "example_code": "yield_kg = 8\nif yield_kg >= 10:\n    print(\"Good harvest\")\nelse:\n    print(\"Below target\")",
+    "common_mistakes": "Using = (assignment) instead of == (comparison) inside the condition.",
+    "practice_questions_shona": [
+      "Nyora if statement inoongorora kana nhamba iri pamusoro pe10.",
+      "Chii chinoitika kana ukashandisa = pane == mu-condition?"
+    ]
+  },
+  {
+    "id": "control_for_loop",
+    "topic": "For Loops",
+    "english_explanation": "A for loop repeats a block of code once for each item in a sequence, such as a list or a range of numbers. It's ideal when you know how many times something should repeat.",
+    "shona_explanation": "For loop inodzokorora chikamu chekodhi kamwe nekamwe pane chinhu chimwe nechimwe chiri musequence, semuenzaniso list kana range yenhamba. Inoshandiswa zvakanaka kana uchiziva kuti chinhu chinofanira kudzokororwa kangani.",
+    "example_code": "villages = [\"Nembudziya\", \"Chireya\", \"Gokwe\"]\nfor village in villages:\n    print(village)",
+    "common_mistakes": "Forgetting the colon (:) at the end of the for line, or incorrect indentation of the loop body.",
+    "practice_questions_shona": [
+      "Nyora for loop inoprinda nhamba kubva pa1 kusvika pa5.",
+      "Ndechipi chinodiwa kuti for loop ishande zvakanaka?"
+    ]
+  },
+  {
+    "id": "control_while_loop",
+    "topic": "While Loops",
+    "english_explanation": "A while loop repeats a block of code as long as a condition stays true. Unlike a for loop, it's used when you don't know in advance how many repetitions are needed.",
+    "shona_explanation": "While loop inodzokorora chikamu chekodhi kana condition ichiri kuramba iri chokwadi (true). Kusiyana ne-for loop, inoshandiswa kana usingazivi kare kuti kudzokorora kunodiwa kangani.",
+    "example_code": "attempts = 0\nwhile attempts < 3:\n    print(\"Attempt\", attempts + 1)\n    attempts += 1",
+    "common_mistakes": "Forgetting to update the loop variable inside the loop, which causes an infinite loop that never stops.",
+    "practice_questions_shona": [
+      "Nyora while loop inodzokorora kusvikira variable yasvika pa5.",
+      "Chii chinokonzera infinite loop mu-while loop?"
+    ]
+  },
+  {
+    "id": "functions_define_call",
+    "topic": "Defining and Calling Functions",
+    "english_explanation": "A function is a reusable block of code that performs a specific task. You define it once using the def keyword, then call it by name whenever you need it, avoiding repeated code.",
+    "shona_explanation": "Function chikamu chekodhi chinogona kushandiswa kazhinji chinoita basa rakati chaiye. Unoisika kamwe uchishandisa izwi rekuti def, wobva waidana nezita rayo pese paunoida, uchidzivirira kudzokorodza kodhi.",
+    "example_code": "def greet(name):\n    print(\"Hello, \" + name)\n\ngreet(\"Tsungirirai\")",
+    "common_mistakes": "Forgetting the colon (:) after the function definition line, or forgetting to actually call the function after defining it.",
+    "practice_questions_shona": [
+      "Nyora function inonzi 'greet' inoprinda mashoko okukwazisa.",
+      "Izwi ripi rinoshandiswa kusika function muPython?"
+    ]
+  },
+  {
+    "id": "functions_params_return",
+    "topic": "Parameters and Return Values",
+    "english_explanation": "Parameters let you pass information into a function so it can work with different inputs. The return keyword sends a value back out of the function so it can be used elsewhere in your program.",
+    "shona_explanation": "Parameters dzinobvumira kuti upinze ruzivo mufunction kuti ishande neinputs dzakasiyana. Izwi rekuti return rinotumira value kunze kwefunction kuti ishandiswe pane imwe nzvimbo muprogiramu yako.",
+    "example_code": "def calculate_total(price, quantity):\n    return price * quantity\n\ntotal = calculate_total(2.5, 10)\nprint(total)",
+    "common_mistakes": "Confusing print() (just displays a value) with return (actually sends the value back for further use) — a function without return gives back None.",
+    "practice_questions_shona": [
+      "Nyora function inogamuchira maviri manhamba wobva yadzosa mubvunzo wazvo.",
+      "Musiyano weiko pakati pe print() ne return?"
+    ]
+  },
+  {
+    "id": "functions_scope",
+    "topic": "Variable Scope",
+    "english_explanation": "Scope determines where a variable can be accessed. A variable created inside a function is local — it only exists inside that function and cannot be used outside it.",
+    "shona_explanation": "Scope inosarudza kuti variable inogona kushandiswa kupi. Variable yakasikwa mukati mefunction inonzi local — inongovapo mukati mefunction iyoyo chete uye haigone kushandiswa kunze kwayo.",
+    "example_code": "def set_score():\n    score = 90\n    print(score)\n\nset_score()\nprint(score)  # NameError: score is not defined here",
+    "common_mistakes": "Trying to use a variable outside the function it was created in, causing a NameError.",
+    "practice_questions_shona": [
+      "Chii chinoreva kuti variable i-local?",
+      "Chii chinoitika kana ukaedza kushandisa local variable kunze kwefunction?"
+    ]
+  },
+  {
+    "id": "data_structures_lists",
+    "topic": "Lists",
+    "english_explanation": "A list stores multiple values in a single ordered collection. You can access items by their position (index), starting from 0, and lists can be changed after creation.",
+    "shona_explanation": "List inochengeta zvinhu zvakawanda mune imwe collection yakarongwa. Unogona kuwana zvinhu nechinzvimbo chazvo (index), kutanga na0, uye ma list anogona kuchinjwa mushure mekusikwa.",
+    "example_code": "crops = [\"maize\", \"sorghum\", \"groundnuts\"]\nprint(crops[0])      # maize\ncrops.append(\"cotton\")\nprint(crops)",
+    "common_mistakes": "Forgetting that indexing starts at 0, not 1 — so crops[1] gives the second item, not the first.",
+    "practice_questions_shona": [
+      "Nyora list ine mazita matatu emhuka, wobva waiprinda yekutanga.",
+      "Index inotanga papi muList?"
+    ]
+  },
+  {
+    "id": "data_structures_dictionaries",
+    "topic": "Dictionaries",
+    "english_explanation": "A dictionary stores data as key-value pairs, letting you look up a value using a meaningful name (the key) instead of a numeric position.",
+    "shona_explanation": "Dictionary inochengeta data seKey-value pairs, ichikubvumira kutsvaga value uchishandisa zita rine musimboti (key) pane chinzvimbo chenhamba.",
+    "example_code": "student = {\"name\": \"Tsungirirai\", \"age\": 24, \"course\": \"Data Analysis\"}\nprint(student[\"name\"])",
+    "common_mistakes": "Trying to access a key that doesn't exist, which causes a KeyError — checking with `.get()` avoids this.",
+    "practice_questions_shona": [
+      "Nyora dictionary ine zita nezera remunhu, wobva watora zita racho.",
+      "Chii chinoitika kana ukatsvaga key isipo mu-dictionary?"
+    ]
+  },
+  {
+    "id": "data_structures_strings",
+    "topic": "Basic String Manipulation",
+    "english_explanation": "Strings are text values that support useful built-in operations like joining (+), repeating (*), slicing (extracting part of the text), and methods like .upper(), .lower(), and .split().",
+    "shona_explanation": "Strings ma value emanyoro anotsigira mabasa akakosha akaumbwa kare senge kubatanidza (+), kudzokorora (*), slicing (kubvisa chikamu chemanyoro), nemamethods senge .upper(), .lower(), uye .split().",
+    "example_code": "name = \"tsungirirai\"\nprint(name.upper())       # TSUNGIRIRAI\nprint(name[0:4])          # tsun",
+    "common_mistakes": "Forgetting that strings are immutable — methods like .upper() return a new string rather than changing the original in place.",
+    "practice_questions_shona": [
+      "Nyora kodhi inoshandura manyoro ave mabhii makuru ese.",
+      "Slicing inoshanda sei pama strings?"
+    ]
+  },
+  {
+    "id": "algorithms_sorting",
+    "topic": "Sorting Numbers",
+    "english_explanation": "Sorting arranges values in order, usually smallest to largest. Bubble sort repeatedly compares neighboring items and swaps them if out of order, but it's slow for large lists. Python's built-in sorted() or .sort() is much faster and used in real programs.",
+    "shona_explanation": "Kuronga (sorting) kunoisa ma value muorder, kazhinji kubva pane diki kusvika pane hombe. Bubble sort inoenzanisa zvinhu zviri pedyo nekamwe nekamwe ichizvichinjanisa kana zvisiri muorder, asi inononoka pama list makuru. Python's sorted() kana .sort() inokurumidza zvakanyanya uye inoshandiswa mumaprogiramu chaiwo.",
+    "example_code": "yields = [12, 8, 15, 3, 20]\nsorted_yields = sorted(yields)\nprint(sorted_yields)  # [3, 8, 12, 15, 20]",
+    "common_mistakes": "Assuming sorted() changes the original list — it doesn't; .sort() does, but sorted() returns a new list instead.",
+    "practice_questions_shona": [
+      "Ndeapi maitiro maviri ekuronga (sorting) List muPython?",
+      "Musiyano weiko pakati pesorted() ne.sort()?"
+    ]
+  },
+  {
+    "id": "algorithms_linear_search",
+    "topic": "Linear Search",
+    "english_explanation": "Linear search checks each item in a list one by one until it finds the target value or reaches the end. It's simple but can be slow on large lists since it may need to check every item.",
+    "shona_explanation": "Linear search inoongorora chinhu chimwe nechimwe muList kamwe nekamwe kusvikira yawana target value kana kusvika kumagumo. Iri nyore asi inogona kunonoka pama list makuru sezvo ingada kuongorora chinhu chimwe nechimwe.",
+    "example_code": "villages = [\"Nembudziya\", \"Chireya\", \"Gokwe\"]\ntarget = \"Chireya\"\nfor v in villages:\n    if v == target:\n        print(\"Found:\", v)\n        break",
+    "common_mistakes": "Forgetting to break out of the loop once the item is found, which wastes time continuing to search unnecessarily.",
+    "practice_questions_shona": [
+      "Tsanangura kuti linear search inoshanda sei muList.",
+      "Nei tichifanira kushandisa break kana chinhu chawanikwa?"
+    ]
+  },
+  {
+    "id": "algorithms_binary_search",
+    "topic": "Binary Search",
+    "english_explanation": "Binary search finds a value much faster by repeatedly checking the middle of a sorted list and eliminating half the remaining items each time. It only works on data that is already sorted.",
+    "shona_explanation": "Binary search inowana value nekukurumidza zvakanyanya nekuongorora nharaunda yepakati peList rakarongwa (sorted) kagara kagara, ichibvisa hafu yezvasara pane imwe neimwe nguva. Inoshanda chete pane data iri kutorongwa (sorted) kare.",
+    "example_code": "numbers = [3, 8, 12, 15, 20]\nlow, high = 0, len(numbers) - 1\nwhile low <= high:\n    mid = (low + high) // 2\n    if numbers[mid] == 15:\n        print(\"Found at index\", mid)\n        break\n    elif numbers[mid] < 15:\n        low = mid + 1\n    else:\n        high = mid - 1",
+    "common_mistakes": "Using binary search on an unsorted list — it will give wrong or missing results because the algorithm assumes order.",
+    "practice_questions_shona": [
+      "Nei binary search ichida kuti List irongwe (sorted) kare?",
+      "Tsanangudza kuti sei binary search ichikurumidza kupfuura linear search."
+    ]
+  },
+  {
+    "id": "algorithms_big_o",
+    "topic": "Big-O Notation (Why Some Code Is Slow)",
+    "english_explanation": "Big-O describes how an algorithm's running time grows as the amount of data grows. O(n) means time grows in direct proportion to data size (like linear search), while O(log n) means time grows very slowly even with much more data (like binary search) — this is why binary search is dramatically faster on large datasets.",
+    "shona_explanation": "Big-O inotsanangura kuti nguva yekushanda kwealgorithm inowedzera sei kana data ichiwedzera. O(n) zvinoreva kuti nguva inowedzera zvakaenzana nehukuru hwedata (semuenzaniso linear search), asi O(log n) zvinoreva kuti nguva inowedzera zvishoma nezvishoma kunyangwe data yakawanda (semuenzaniso binary search) — ndosaka binary search ichikurumidza zvakanyanya pane data hombe.",
+    "example_code": "# Linear search: checks up to n items -> O(n)\n# Binary search: checks up to log(n) items -> O(log n)\n# For 1,000,000 items: linear could check 1,000,000; binary needs about 20",
+    "common_mistakes": "Assuming a 'faster-looking' algorithm is always better for small data — Big-O matters most as data size grows large; for tiny lists, the difference is negligible.",
+    "practice_questions_shona": [
+      "Chii chinorehwa ne O(n)?",
+      "Nei O(log n) ichikurumidza kupfuura O(n) pane data hombe?"
+    ]
+  },
+  {
+    "id": "debug_syntaxerror",
+    "topic": "Understanding SyntaxError",
+    "english_explanation": "A SyntaxError means Python cannot understand the structure of your code — often caused by a missing colon, unmatched bracket, or incorrect indentation. It happens before the program even runs.",
+    "shona_explanation": "SyntaxError zvinoreva kuti Python haigone kunzwisisa structure yekodhi yako — kazhinji inokonzerwa nekushaikwa kwe colon, ma bracket asina kuenzana, kana indentation isiriyo. Inoitika purogiramu isati yatomboita chero chinhu.",
+    "example_code": "if age >= 18\n    print(\"Adult\")\n# Missing colon after the condition causes a SyntaxError",
+    "common_mistakes": "Forgetting the colon (:) after if, for, while, or def statements — one of the most common beginner errors.",
+    "practice_questions_shona": [
+      "Chikonzero chikuru cheSyntaxError chii?",
+      "Nyora muenzaniso wekodhi ine SyntaxError."
+    ]
+  },
+  {
+    "id": "debug_typeerror",
+    "topic": "Understanding TypeError",
+    "english_explanation": "A TypeError happens when you try to use a value in a way that doesn't match its type — like adding a number to text. Python tells you exactly which operation failed.",
+    "shona_explanation": "TypeError inoitika kana ukaedza kushandisa chinhu (value) nenzira isiriyo maererano nerudzi rwacho — semuenzaniso kuwedzera nhamba pamwe chete netext. Python inokuudza chaizvo kuti chii chakatadza.",
+    "example_code": "age = \"20\"\nprint(age + 5)  # TypeError: can't add str and int",
+    "common_mistakes": "Mixing string and integer types without converting one first (e.g. using int() or str()).",
+    "practice_questions_shona": [
+      "Nei ukawedzera nhamba pamwe chete netext uchiwana TypeError?",
+      "Ungagadzirisa sei TypeError yakadaro?"
+    ]
+  },
+  {
+    "id": "debug_indexerror",
+    "topic": "Understanding IndexError",
+    "english_explanation": "An IndexError occurs when you try to access a list position that doesn't exist — for example, asking for the 5th item in a list that only has 3 items.",
+    "shona_explanation": "IndexError inoitika kana ukaedza kuwana chinzvimbo cheList chisipo — semuenzaniso kukumbira chinhu chechishanu muList ine zvinhu zvitatu chete.",
+    "example_code": "crops = [\"maize\", \"sorghum\"]\nprint(crops[5])  # IndexError: list index out of range",
+    "common_mistakes": "Forgetting that list indices start at 0 and end at length-1, so trying to access index equal to the list's length always fails.",
+    "practice_questions_shona": [
+      "IndexError inoitika riini?",
+      "Kana List ine zvinhu zvitatu, chinzvimbo chekupedzisira ndechipi?"
+    ]
+  },
+  {
+    "id": "debug_nameerror",
+    "topic": "Understanding NameError",
+    "english_explanation": "A NameError happens when you try to use a variable or function that hasn't been defined yet, often due to a typo or using it before it's created.",
+    "shona_explanation": "NameError inoitika kana ukaedza kushandisa variable kana function isati yamboiswa (defined), kazhinji nekuda kwekukanganisa mavara kana kuishandisa isati yasikwa.",
+    "example_code": "print(total)  # NameError: total is not defined\ntotal = 100",
+    "common_mistakes": "Using a variable before it's assigned, or misspelling a variable name that was defined earlier (e.g. Total vs total).",
+    "practice_questions_shona": [
+      "NameError inoreveiko?",
+      "Nyora muenzaniso unokonzeresa NameError."
+    ]
+  },
+  {
+    "id": "debug_reading_traceback",
+    "topic": "How to Read a Traceback",
+    "english_explanation": "A traceback shows exactly where an error occurred, listing the file, line number, and the specific error type at the bottom. Always read the last line first — it names the actual error.",
+    "shona_explanation": "Traceback inoratidza chaizvo kuti error yaitika kupi, ichiratidza file, line number, uye rudzi rweerror pasi pese. Nguva dzose verenga line yekupedzisira kutanga — ndiyo inotaura error chaiyo.",
+    "example_code": "# Example traceback (read bottom line first):\n# Traceback (most recent call last):\n#   File \"tutor.py\", line 4\n#     print(total)\n# NameError: name 'total' is not defined",
+    "common_mistakes": "Reading tracebacks top-to-bottom and getting confused by file paths — the actual error type and message is always at the very bottom.",
+    "practice_questions_shona": [
+      "Line ipi yaunofanira kutanga kuverenga muTraceback?",
+      "Chii chinowanikwa muTraceback?"
+    ]
+  }
 ]
