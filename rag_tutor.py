@@ -27,7 +27,8 @@ I can help with: variables, if/else, loops, functions, lists, dictionaries,
 strings, sorting, searching, and debugging common errors.
 Try asking about one of these!"""
 
-DISTANCE_THRESHOLD = 1.4  # placeholder - we will tune this after seeing real test values
+DISTANCE_THRESHOLD = 1.4
+
 
 def retrieve(question, top_k=1):
     """Find the closest syllabus entry and return it with its distance score."""
@@ -35,9 +36,10 @@ def retrieve(question, top_k=1):
     distances, indices = index.search(query_embedding, top_k)
     return syllabus[indices[0][0]], distances[0][0]
 
-def answer_question(question, language="english"):
-    entry, distance = retrieve(question)
 
+def answer_question(question, language="english"):
+    """Retrieve context, then generate/return a grounded answer."""
+    entry, distance = retrieve(question)
 
     if distance > DISTANCE_THRESHOLD:
         return SHONA_FALLBACK if language == "shona" else ENGLISH_FALLBACK
@@ -72,9 +74,55 @@ Student question: {question}
     output = llm(prompt, max_tokens=300, stop=["<|end|>"], echo=False)
     return output["choices"][0]["text"].strip()
 
+
+def generate_practice_questions(topic_query, language="english", num_questions=3):
+    """
+    Return practice questions for a topic.
+    - English: generated live by the model using retrieved context.
+    - Shona: returned directly from curated, human-verified questions
+      (the base model does not reliably generate Shona - see REPORT.md).
+    """
+    entry, distance = retrieve(topic_query)
+
+    if distance > DISTANCE_THRESHOLD:
+        return SHONA_FALLBACK if language == "shona" else ENGLISH_FALLBACK
+
+    if language == "shona":
+        questions = entry.get("practice_questions_shona", [])
+        if not questions:
+            return SHONA_FALLBACK
+        header = f"Mibvunzo yekudzidzira: {entry['topic']}\n"
+        numbered = "\n".join(f"{i+1}. {q}" for i, q in enumerate(questions))
+        return header + "\n" + numbered
+
+    context = f"""Topic: {entry['topic']}
+Explanation: {entry['english_explanation']}
+Example code:
+{entry['example_code']}"""
+
+    prompt = f"""<|user|>
+Based on the following CS topic, generate {num_questions} short practice questions
+a beginner student could answer to test their understanding. Number them 1, 2, 3.
+Do not include answers, only the questions.
+
+{context}
+<|end|>
+<|assistant|>
+"""
+
+    output = llm(prompt, max_tokens=250, stop=["<|end|>"], echo=False)
+    return output["choices"][0]["text"].strip()
+
+
 if __name__ == "__main__":
-    question = input("Ask a coding question: ")
+    mode = input("Choose mode - (1) Ask a question, (2) Get practice questions: ").strip()
     lang = input("Language (english/shona): ").strip().lower()
-    answer = answer_question(question, language=lang)
-    print("\n--- Tutor's Answer ---")
-    print(answer)
+
+    if mode == "2":
+        topic = input("Which topic do you want practice questions on? ")
+        print("\n--- Practice Questions ---")
+        print(generate_practice_questions(topic, language=lang))
+    else:
+        question = input("Ask a coding question: ")
+        print("\n--- Tutor's Answer ---")
+        print(answer_question(question, language=lang))
