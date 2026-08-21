@@ -3,14 +3,14 @@
 ## Africa Deep Tech Challenge 2026 — The Laptop LLM Challenge
 
 **Track:** Math & Scientific Reasoning (Coding Assistants)
-**Team:** Group 21
-**Repository:** github.com/tmachingur-code/adtc-shona-coding-tutor
+
+**Repository:** https://github.com/tmachingur-code/adtc-shona-coding-tutor
 
 ---
 
 ## 1. Problem Definition
 
-Access to coding education across much of Africa is constrained by three linked barriers: unreliable or expensive internet connectivity, the cost of cloud-based AI tutoring subscriptions, and the fact that most instructional material — including AI tutoring tools — is delivered exclusively in English, disadvantaging students who are more comfortable learning technical concepts in a local language.
+Access to coding education across much of Africa is constrained by three linked barriers: unreliable or expensive internet connectivity, the cost of cloud-based AI tutoring subscriptions, and the fact that most instructional material including AI tutoring tools is delivered exclusively in English, disadvantaging students who are more comfortable learning technical concepts in a local language.
 
 This is a first-hand, not hypothetical, problem: our team draws on lived experience from Gokwe North, Zimbabwe, a rural community where consistent connectivity and subscription-based tools are not a given, and where Shona is the primary language of everyday communication.
 
@@ -100,10 +100,10 @@ Measured using our own `benchmark.py` script (included in the repository), run i
 
 | Metric | Result | Budget / Target | Status |
 |---|---|---|---|
-| Peak RAM usage | 4.75 GB | 7 GB ceiling | ✅ Within budget (~68% used) |
+| Peak RAM usage | 4.75 GB | 7 GB ceiling | Within budget (~68% used) |
 | LLM load time | ~2–8 sec | — | — |
 | Generation speed | ~6.7–6.9 tokens/sec | Relative to fastest submission | Documented; see note below |
-| Thermal throttling | Not observed in testing | No penalty | ✅ |
+| Thermal throttling | Not observed in testing | No penalty | 
 
 **Note on speed:** we tested thread counts of 4 and 8 (machine has 12 physical cores available); the difference was negligible (6.71 → 6.87 tokens/sec), indicating the bottleneck is compute-bound on this model size rather than thread-limited. We also confirmed this is not a WSL2 resource-constraint artifact (`free -h` and `nproc` confirmed full CPU/RAM access). We acknowledge that WSL2 virtualization may introduce overhead not present on bare-metal Ubuntu 22.04, the actual Gate 2 audit environment, and results there may differ.
 
@@ -125,6 +125,6 @@ This directly targets the challenge's African Alpha Bonus and Best Localisation 
 
 ## 10. Team
 
-Tsungirirai Machingura - Software Engineering Student at African Leadership University
+Tsungirirai Machingura - Software Engineering Student at African Leadership University, Rwanda
 
-Malvin.T Machingura - Software Engineering Student at Bindura University 
+Malvin.T Machingura - Software Engineering Student at Bindura University, Zimbabwe 
