@@ -31,7 +31,7 @@ print(f"[RAM] After loading FAISS index: {ram_after_index:.1f} MB")
 # Load LLM
 llm_load_start = time.time()
 llm = Llama(
-    model_path="./models/Phi-3.5-mini-instruct-Q4_K_M.gguf",
+    model_path="./models/gemma-2-2b-it-Q4_K_M.gguf",
     n_ctx=2048,
     n_threads=8,
     verbose=False
@@ -42,7 +42,7 @@ print(f"[RAM] After loading LLM: {ram_after_llm:.1f} MB")
 print(f"[TIME] LLM load time: {llm_load_time:.2f} seconds\n")
 
 # Run a test generation and measure tokens/sec
-test_prompt = "<|user|>\nExplain what a for loop is in Python, briefly.<|end|>\n<|assistant|>\n"
+test_prompt = "<start_of_turn>user\nExplain what a for loop is in Python, briefly.<end_of_turn>\n<start_of_turn>model\n"
 
 print("Running test generation...")
 gen_start = time.time()

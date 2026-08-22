@@ -11,7 +11,7 @@ with open("data/syllabus_map.json", "r", encoding="utf-8") as f:
     syllabus = json.load(f)
 
 llm = Llama(
-    model_path="./models/Phi-3.5-mini-instruct-Q4_K_M.gguf",
+    model_path="./models/gemma-2-2b-it-Q4_K_M.gguf",
     n_ctx=2048,
     n_threads=8,
     verbose=False
@@ -60,15 +60,15 @@ Example code:
 {entry['example_code']}
 Common mistakes: {entry['common_mistakes']}"""
 
-    prompt = f"""<|user|>
+    prompt = f"""<start_of_turn>user
 You are a helpful coding tutor. Use the following reference material to answer the student's question clearly and simply.
 
 Reference:
 {context}
 
 Student question: {question}
-<|end|>
-<|assistant|>
+<end_of_turn>
+<start_of_turn>model
 """
 
     output = llm(prompt, max_tokens=300, stop=["<|end|>"], echo=False)
@@ -100,14 +100,14 @@ Explanation: {entry['english_explanation']}
 Example code:
 {entry['example_code']}"""
 
-    prompt = f"""<|user|>
+    prompt = f"""<start_of_turn>user
 Based on the following CS topic, generate {num_questions} short practice questions
 a beginner student could answer to test their understanding. Number them 1, 2, 3.
 Do not include answers, only the questions.
 
 {context}
-<|end|>
-<|assistant|>
+<end_of_turn>
+<start_of_turn>model
 """
 
     output = llm(prompt, max_tokens=250, stop=["<|end|>"], echo=False)
