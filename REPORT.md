@@ -3,8 +3,8 @@
 ## Africa Deep Tech Challenge 2026 — The Laptop LLM Challenge
 
 **Track:** Math & Scientific Reasoning (Coding Assistants)
-**Team:** Group 21
-**Repository:** github.com/tmachingur-code/adtc-shona-coding-tutor
+
+**Repository:**https:// github.com/tmachingur-code/adtc-shona-coding-tutor
 
 ---
 
@@ -37,7 +37,7 @@ All development and testing was carried out in a WSL2 Ubuntu environment to clos
 
 The system combines three components into a single reasoning pipeline:
 
-1. **Local LLM (generation):** Phi-3.5-mini-instruct (Microsoft), quantized to Q4_K_M GGUF format by bartowski, run via `llama-cpp-python` (CPU-only, no GPU offload). No fine-tuning or retraining was performed.
+1. **Local LLM (generation):** Gemma-2-2b-it (Google), quantized to Q4_K_M GGUF format by bartowski, run via `llama-cpp-python` (CPU-only, no GPU offload). No fine-tuning or retraining was performed. Selected after empirical comparison against Phi-3.5-mini-instruct (Microsoft) — see Section 7 for benchmark comparison.
 2. **Retrieval layer (RAG):** a curated syllabus of 21 CS concept entries is embedded using `sentence-transformers` (`all-MiniLM-L6-v2`, ~80MB) and indexed with FAISS (`IndexFlatL2`) for fast local similarity search
 3. **Bilingual response layer:** English responses (both explanations and practice questions) are generated live by the LLM using retrieved context; Shona responses (both explanations and practice questions) are returned directly from curated, human-verified content (see Design Decision 4.2)
 
@@ -87,7 +87,7 @@ We consider this an honest and realistic characterization rather than a shortfal
 
 | Component | Tool |
 |---|---|
-| LLM inference | llama-cpp-python + Phi-3.5-mini-instruct (Q4_K_M GGUF) |
+| LLM inference | llama-cpp-python + Gemma-2-2b-it (Q4_K_M GGUF) |
 | Embeddings | sentence-transformers (all-MiniLM-L6-v2) |
 | Vector search | FAISS (IndexFlatL2), CPU-only |
 | RAM monitoring | psutil |
@@ -98,14 +98,28 @@ We consider this an honest and realistic characterization rather than a shortfal
 
 Measured using our own `benchmark.py` script (included in the repository), run in a WSL2 Ubuntu environment with 12 CPU cores and 7.6GB RAM available to the VM.
 
+### Model comparison
+
+We empirically benchmarked two candidate models before selecting a final one, rather than choosing arbitrarily:
+
+| Metric | Phi-3.5-mini-instruct (3.8B) | Gemma-2-2b-it (2B) — **selected** |
+|---|---|---|
+| Peak RAM usage | 4.75 GB | **3.29 GB** |
+| LLM load time | ~2–8 sec | ~2 sec |
+| Generation speed | ~6.7–6.9 tokens/sec | **9.67 tokens/sec** |
+| Answer quality (manual review) | Good | Good, no regression observed |
+
+Gemma-2-2b-it was selected as the final model: it uses ~31% less RAM and generates ~42% faster than Phi-3.5-mini, with no observed quality regression across our test questions (English Q&A, Shona Q&A, and practice-question generation in both languages).
+
+### Final model results
+
 | Metric | Result | Budget / Target | Status |
 |---|---|---|---|
-| Peak RAM usage | 4.75 GB | 7 GB ceiling | ✅ Within budget (~68% used) |
-| LLM load time | ~2–8 sec | — | — |
-| Generation speed | ~6.7–6.9 tokens/sec | Relative to fastest submission | Documented; see note below |
+| Peak RAM usage | 3.29 GB | 7 GB ceiling | ✅ Within budget (~47% used) |
+| Generation speed | 9.67 tokens/sec | Relative to fastest submission | Documented |
 | Thermal throttling | Not observed in testing | No penalty | ✅ |
 
-**Note on speed:** we tested thread counts of 4 and 8 (machine has 12 physical cores available); the difference was negligible (6.71 → 6.87 tokens/sec), indicating the bottleneck is compute-bound on this model size rather than thread-limited. We also confirmed this is not a WSL2 resource-constraint artifact (`free -h` and `nproc` confirmed full CPU/RAM access). We acknowledge that WSL2 virtualization may introduce overhead not present on bare-metal Ubuntu 22.04, the actual Gate 2 audit environment, and results there may differ.
+**Note on speed:** we tested thread counts of 4 and 8 on Phi-3.5-mini (machine has 12 physical cores available); the difference was negligible, indicating the bottleneck was compute-bound rather than thread-limited. We confirmed this was not a WSL2 resource-constraint artifact (`free -h` and `nproc` confirmed full CPU/RAM access to the VM). We acknowledge that WSL2 virtualization may introduce overhead not present on bare-metal Ubuntu 22.04, the actual Gate 2 audit environment, and results there may differ.
 
 ## 8. African Language (Alpha) Bonus
 
@@ -125,6 +139,6 @@ This directly targets the challenge's African Alpha Bonus and Best Localisation 
 
 ## 10. Team
 
-Tsungirirai Machingura - Software Engineering Student at African Leadership University
+Tsungirirai Machingura - SOftware Engineerig Student at African Leadership University , Rwanda
 
-Malvin.T Machingura - Software Engineering Student at Bindura University 
+Malvin. T Machingura - Software Engineering Student at Bindura Unviersity
