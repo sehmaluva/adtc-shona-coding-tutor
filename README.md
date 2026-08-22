@@ -3,11 +3,11 @@
 An offline AI coding tutor for the **Africa Deep Tech Challenge 2026 — Laptop LLM Challenge**. Teaches Python and CS fundamentals in English and Shona, running fully on-device with no internet required.
 
 ## Features
-- Fully offline inference (Phi-3.5-mini, quantized, via llama.cpp)
+- Fully offline inference (Gemma-2-2b-it, quantized GGUF Q4_K_M, via llama.cpp)
 - Bilingual: English and Shona, for both explanations and practice questions
 - RAG-grounded answers from a curated 21-topic CS syllabus
 - Two modes: ask a question, or generate practice questions on a topic
-- Runs within a 7GB RAM budget, CPU-only (measured peak: ~4.75GB)
+- Runs within a 7GB RAM budget, CPU-only (measured peak: ~2.75GB, official profiler)
 - Honest fallback for out-of-scope questions instead of guessing
 
 ## Setup
@@ -15,7 +15,7 @@ An offline AI coding tutor for the **Africa Deep Tech Challenge 2026 — Laptop 
 ```bash
 # 1. Clone and enter the repo
 git clone https://github.com/tmachingur-code/adtc-shona-coding-tutor.git
-cd adtc-shona-coding-tutor
+cd adtc-tutor
 
 # 2. Create virtual environment
 python3 -m venv adtc-tutor-env
@@ -25,11 +25,10 @@ source adtc-tutor-env/bin/activate
 sudo apt update && sudo apt install build-essential cmake -y
 
 # 4. Install dependencies
-pip install llama-cpp-python sentence-transformers faiss-cpu numpy huggingface_hub psutil
+pip install -r requirements.txt
 
-# 5. Download the model
-mkdir -p models
-hf download bartowski/Phi-3.5-mini-instruct-GGUF Phi-3.5-mini-instruct-Q4_K_M.gguf --local-dir ./models
+# 5. Download the model (public, no credentials required)
+bash download_model.sh
 
 # 6. Build the RAG index
 python3 build_index.py
@@ -56,7 +55,7 @@ Tsanangudzo: For loop inodzokorora chikamu chekodhi kamwe nekamwe...
 
 Your question is embedded and matched against a curated syllabus using FAISS. English answers/practice questions are generated live by the model using the matched context; Shona answers/practice questions return curated, human-verified content directly (for accuracy — see REPORT.md for why). Questions outside the syllabus scope return a clear fallback message instead of a guess.
 
-**Note on Shona input:** questions phrased fully in English, or in Shona with an embedded English technical term (e.g. "Chii chinonzi for loop"), match reliably. Fully Shona questions with no English term do not currently match reliably — see REPORT.md Section 5 for details.
+**Note on Shona input:** questions phrased fully in English, or in Shona with an embedded English technical term (e.g. "Chii chinonzi for loop"), match reliably. Fully Shona questions with no English term do not currently match reliably — see REPORT.md for details.
 
 ## Syllabus Coverage
 
@@ -64,10 +63,40 @@ Python Basics · Control Flow · Functions · Data Structures · Algorithms & Re
 
 ## Checking Performance
 
+**Own benchmark script** (RAM + speed, includes embedder/index load):
 ```bash
 python3 benchmark.py
 ```
-Reports peak RAM usage and generation speed (tokens/sec).
+
+**Official ADTC profiler** (throughput, memory, thermals, accuracy):
+```bash
+pip install "git+https://github.com/Africa-Deep-Tech-Foundation/adtc-profiler.git"
+adtc-profiler run --submission . --mode participant --output submission.json
+```
 
 See `REPORT.md` for full design rationale, constraints, benchmarks, and known limitations.
 
+## Repository Structure
+
+```
+├── metadata.json          # Team, model, and test prompt metadata
+├── download_model.sh      # Downloads the model weights to model/
+├── REPORT.md              # Technical writeup
+├── model/                 # Model weights (downloaded, not committed)
+├── data/
+│   ├── syllabus.json      # Curated CS syllabus (English + Shona)
+│   ├── syllabus_map.json  # Generated lookup used by the RAG pipeline
+│   └── syllabus.index     # Generated FAISS index
+├── rag_tutor.py            # Main application
+├── build_index.py         # Builds the FAISS index from syllabus.json
+├── benchmark.py            # Own RAM/speed benchmark script
+└── requirements.txt
+```
+
+## License
+
+MIT — see `LICENSE`.
+
+## Acknowledgements
+
+Built for the **Africa Deep Tech Challenge 2026 — Laptop LLM Challenge**, hosted by the Africa Deep Tech Foundation.
