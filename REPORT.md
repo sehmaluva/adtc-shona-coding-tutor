@@ -4,13 +4,13 @@
 
 **Track:** Math & Scientific Reasoning (Coding Assistants)
 
-**Repository:**https:// github.com/tmachingur-code/adtc-shona-coding-tutor
+**Repository:** https://github.com/tmachingur-code/adtc-shona-coding-tutor
 
 ---
 
 ## 1. Problem Definition
 
-Access to coding education across much of Africa is constrained by three linked barriers: unreliable or expensive internet connectivity, the cost of cloud-based AI tutoring subscriptions, and the fact that most instructional material — including AI tutoring tools — is delivered exclusively in English, disadvantaging students who are more comfortable learning technical concepts in a local language.
+Access to coding education across much of Africa is constrained by three linked barriers: unreliable or expensive internet connectivity, the cost of cloud-based AI tutoring subscriptions, and the fact that most instructional material including AI tutoring tools is delivered exclusively in English, disadvantaging students who are more comfortable learning technical concepts in a local language.
 
 This is a first-hand, not hypothetical, problem: our team draws on lived experience from Gokwe North, Zimbabwe, a rural community where consistent connectivity and subscription-based tools are not a given, and where Shona is the primary language of everyday communication.
 
@@ -114,10 +114,9 @@ Gemma-2-2b-it was selected as the final model: it uses ~31% less RAM and generat
 ### Final model results
 
 | Metric | Result | Budget / Target | Status |
-|---|---|---|---|
-| Peak RAM usage | 3.29 GB | 7 GB ceiling | ✅ Within budget (~47% used) |
+| Peak RAM usage | 3.29 GB | 7 GB ceiling | Within budget (~47% used) |
 | Generation speed | 9.67 tokens/sec | Relative to fastest submission | Documented |
-| Thermal throttling | Not observed in testing | No penalty | ✅ |
+| Thermal throttling | Not observed in testing | No penalty |  |
 
 **Note on speed:** we tested thread counts of 4 and 8 on Phi-3.5-mini (machine has 12 physical cores available); the difference was negligible, indicating the bottleneck was compute-bound rather than thread-limited. We confirmed this was not a WSL2 resource-constraint artifact (`free -h` and `nproc` confirmed full CPU/RAM access to the VM). We acknowledge that WSL2 virtualization may introduce overhead not present on bare-metal Ubuntu 22.04, the actual Gate 2 audit environment, and results there may differ.
 
@@ -141,4 +140,4 @@ This directly targets the challenge's African Alpha Bonus and Best Localisation 
 
 Tsungirirai Machingura - SOftware Engineerig Student at African Leadership University , Rwanda
 
-Malvin. T Machingura - Software Engineering Student at Bindura Unviersity
+Malvin. T Machingura - Software Engineering Student at Bindura Unviersity, Zimbabwe
