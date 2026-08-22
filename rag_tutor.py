@@ -1,3 +1,4 @@
+import sys
 import json
 import faiss
 import numpy as np
@@ -17,17 +18,12 @@ llm = Llama(
     verbose=False
 )
 
-SHONA_FALLBACK = """Ndine urombo, handisati ndadzidziswa nezvechinhu ichi.
-Ndiri kugona kubatsira nezve: variable, if/else, for loop, while loop,
-function, list, dictionary, string, sorting, searching, uye kuongorora
-zvikanganiso (debugging). Bvunza mumwe mubvunzo une chekuita nezvinhu izvi."""
+SHONA_APOLOGY_PREFIX = """Ndine urombo, handikwanisi kutsanangura nechiShona nekuti
+handisati ndadzidziswa nezvechinhu ichi muchiShona. Asi ndinogona kukupa
+tsanangudzo muChirungu (English):
+"""
 
-ENGLISH_FALLBACK = """I don't have information on that topic in my current knowledge base.
-I can help with: variables, if/else, loops, functions, lists, dictionaries,
-strings, sorting, searching, and debugging common errors.
-Try asking about one of these!"""
-
-DISTANCE_THRESHOLD = 1.4
+DISTANCE_THRESHOLD = 1.6
 
 
 def retrieve(question, top_k=1):
@@ -38,14 +34,22 @@ def retrieve(question, top_k=1):
 
 
 def answer_question(question, language="english"):
-    """Retrieve context, then generate/return a grounded answer."""
+    """
+    Retrieve context, then generate/return a grounded answer.
+    - In-scope (confident match): grounded on curated syllabus content.
+    - Out-of-scope, English: the model answers using its own general
+      coding knowledge (not syllabus-grounded), so the tutor can still
+      respond sensibly to questions outside the curated 21 topics.
+    - Out-of-scope, Shona: returns a curated fallback message rather
+      than attempting ungrounded Shona generation, which we've confirmed
+      is unreliable (see REPORT.md).
+    """
     entry, distance = retrieve(question)
-
-    if distance > DISTANCE_THRESHOLD:
-        return SHONA_FALLBACK if language == "shona" else ENGLISH_FALLBACK
+    in_scope = distance <= DISTANCE_THRESHOLD
 
     if language == "shona":
-        return f"""Musoro: {entry['topic']}
+        if in_scope:
+            return f"""Musoro: {entry['topic']}
 
 Tsanangudzo: {entry['shona_explanation']}
 
@@ -53,18 +57,45 @@ Muenzaniso wekodhi:
 {entry['example_code']}
 
 Zvinowanzokanganisa: {entry['common_mistakes']}"""
+        # Out-of-scope Shona: apologize in Shona, then give a real
+        # English answer from the model's general knowledge, rather
+        # than refusing outright.
+        prompt = f"""<start_of_turn>user
+You are a helpful coding and computer science tutor for beginners.
+Answer the student's question clearly, simply, and accurately.
 
-    context = f"""Topic: {entry['topic']}
+Student question: {question}
+<end_of_turn>
+<start_of_turn>model
+"""
+        output = llm(prompt, max_tokens=300, stop=["<|end|>"], echo=False)
+        english_answer = output["choices"][0]["text"].strip()
+        return SHONA_APOLOGY_PREFIX + "\n" + english_answer
+
+    # English
+    if in_scope:
+        context = f"""Topic: {entry['topic']}
 Explanation: {entry['english_explanation']}
 Example code:
 {entry['example_code']}
 Common mistakes: {entry['common_mistakes']}"""
 
-    prompt = f"""<start_of_turn>user
+        prompt = f"""<start_of_turn>user
 You are a helpful coding tutor. Use the following reference material to answer the student's question clearly and simply.
 
 Reference:
 {context}
+
+Student question: {question}
+<end_of_turn>
+<start_of_turn>model
+"""
+    else:
+        # Out-of-scope: no curated reference material available.
+        # Let the model answer from its own general coding knowledge.
+        prompt = f"""<start_of_turn>user
+You are a helpful coding and computer science tutor for beginners.
+Answer the student's question clearly, simply, and accurately.
 
 Student question: {question}
 <end_of_turn>
@@ -78,29 +109,42 @@ Student question: {question}
 def generate_practice_questions(topic_query, language="english", num_questions=3):
     """
     Return practice questions for a topic.
-    - English: generated live by the model using retrieved context.
+    - English, in-scope: generated live using retrieved syllabus context.
+    - English, out-of-scope: generated live using the model's general
+      knowledge of the requested topic.
     - Shona: returned directly from curated, human-verified questions
-      (the base model does not reliably generate Shona - see REPORT.md).
+      when in-scope; curated fallback otherwise (the base model does
+      not reliably generate Shona - see REPORT.md).
     """
     entry, distance = retrieve(topic_query)
-
-    if distance > DISTANCE_THRESHOLD:
-        return SHONA_FALLBACK if language == "shona" else ENGLISH_FALLBACK
+    in_scope = distance <= DISTANCE_THRESHOLD
 
     if language == "shona":
-        questions = entry.get("practice_questions_shona", [])
-        if not questions:
-            return SHONA_FALLBACK
-        header = f"Mibvunzo yekudzidzira: {entry['topic']}\n"
-        numbered = "\n".join(f"{i+1}. {q}" for i, q in enumerate(questions))
-        return header + "\n" + numbered
+        if in_scope:
+            questions = entry.get("practice_questions_shona", [])
+            if questions:
+                header = f"Mibvunzo yekudzidzira: {entry['topic']}\n"
+                numbered = "\n".join(f"{i+1}. {q}" for i, q in enumerate(questions))
+                return header + "\n" + numbered
+        # Out-of-scope (or no curated Shona questions available):
+        # apologize in Shona, then generate English practice questions.
+        prompt = f"""<start_of_turn>user
+Generate {num_questions} short beginner-level practice questions about: {topic_query}
+Number them 1, 2, 3. Do not include answers, only the questions.
+<end_of_turn>
+<start_of_turn>model
+"""
+        output = llm(prompt, max_tokens=250, stop=["<|end|>"], echo=False)
+        english_questions = output["choices"][0]["text"].strip()
+        return SHONA_APOLOGY_PREFIX + "\n" + english_questions
 
-    context = f"""Topic: {entry['topic']}
+    # English
+    if in_scope:
+        context = f"""Topic: {entry['topic']}
 Explanation: {entry['english_explanation']}
 Example code:
 {entry['example_code']}"""
-
-    prompt = f"""<start_of_turn>user
+        prompt = f"""<start_of_turn>user
 Based on the following CS topic, generate {num_questions} short practice questions
 a beginner student could answer to test their understanding. Number them 1, 2, 3.
 Do not include answers, only the questions.
@@ -109,20 +153,55 @@ Do not include answers, only the questions.
 <end_of_turn>
 <start_of_turn>model
 """
+    else:
+        prompt = f"""<start_of_turn>user
+Generate {num_questions} short beginner-level practice questions about: {topic_query}
+Number them 1, 2, 3. Do not include answers, only the questions.
+<end_of_turn>
+<start_of_turn>model
+"""
 
     output = llm(prompt, max_tokens=250, stop=["<|end|>"], echo=False)
     return output["choices"][0]["text"].strip()
 
 
+def ask_mode():
+    """Prompt until a valid mode (1 or 2) is entered."""
+    while True:
+        raw = input("Choose mode - (1) Ask a question, (2) Get practice questions: ").strip()
+        if raw in ("1", "2"):
+            return raw
+        print("Please enter 1 or 2.")
+
+
+def ask_language():
+    """Prompt until a valid language is entered. Accepts shorthand."""
+    english_aliases = {"english", "en", "e", "1"}
+    shona_aliases = {"shona", "sn", "s", "0"}
+    while True:
+        raw = input("Language (english/shona, or 1=english, 0=shona): ").strip().lower()
+        if raw in english_aliases:
+            return "english"
+        if raw in shona_aliases:
+            return "shona"
+        print("Please enter 'english', 'shona', 1, or 0.")
+
+
+# Suppress harmless llama-cpp-python deallocator error on interpreter exit
+sys.unraisablehook = lambda *args: None
+
+
 if __name__ == "__main__":
-    mode = input("Choose mode - (1) Ask a question, (2) Get practice questions: ").strip()
-    lang = input("Language (english/shona): ").strip().lower()
+    mode = ask_mode()
+    lang = ask_language()
 
     if mode == "2":
-        topic = input("Which topic do you want practice questions on? ")
+        topic_prompt = "Mibvunzo yekudzidzira pamusoro pei? " if lang == "shona" else "Which topic do you want practice questions on? "
+        topic = input(topic_prompt)
         print("\n--- Practice Questions ---")
         print(generate_practice_questions(topic, language=lang))
     else:
-        question = input("Ask a coding question: ")
+        question_prompt = "Bvunza mubvunzo wekodhi: " if lang == "shona" else "Ask a coding question: "
+        question = input(question_prompt)
         print("\n--- Tutor's Answer ---")
         print(answer_question(question, language=lang))
