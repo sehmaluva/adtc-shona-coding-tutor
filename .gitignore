@@ -1,5 +1,8 @@
 adtc-tutor-env/
-models/
+model/
+*.gguf
 __pycache__/
 *.pyc
 .env
+data/*.save
+data/*.save.*

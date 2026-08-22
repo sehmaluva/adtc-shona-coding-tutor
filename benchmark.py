@@ -31,7 +31,7 @@ print(f"[RAM] After loading FAISS index: {ram_after_index:.1f} MB")
 # Load LLM
 llm_load_start = time.time()
 llm = Llama(
-    model_path="./models/gemma-2-2b-it-Q4_K_M.gguf",
+    model_path="./model/gemma-2-2b-it-Q4_K_M.gguf",
     n_ctx=2048,
     n_threads=8,
     verbose=False

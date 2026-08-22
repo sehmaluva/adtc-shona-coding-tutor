@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.1.0",
+  "profiler_version": "adtc-profiler 0.1.0",
+  "submission": {
+    "team_id": "group21",
+    "domain": "coding_assistants",
+    "language_scope": [
+      "en",
+      "sn"
+    ],
+    "african_alpha_claim": true,
+    "budget_laptop_claim": true,
+    "submitter": {
+      "name": "Tsungirirai Machingura",
+      "email": "t.machingur@alustudent.com",
+      "github_handle": "tmachingur-code"
+    },
+    "cross_disciplinary_pairing": {
+      "discipline": "education",
+      "load_bearing": true,
+      "description": "Combines RAG-grounded CS tutoring with bilingual (English/Shona) language localisation, curated to ensure linguistic accuracy where the base model's Shona generation is unreliable."
+    },
+    "test_prompts": [
+      {
+        "prompt_id": "tp_001",
+        "prompt": "How do I sort a list in Python?"
+      },
+      {
+        "prompt_id": "tp_002",
+        "prompt": "Chii chinonzi for loop?"
+      }
+    ],
+    "model": {
+      "name": "gemma-2-2b-it-Q4_K_M",
+      "runtime": "llama.cpp",
+      "quantization": "GGUF Q4_K_M",
+      "parameters_estimate": "2.6B",
+      "packaging": "binary_bundle"
+    }
+  },
+  "environment": {
+    "measured_on": "participant_laptop",
+    "cpu_model": "13th Gen Intel(R) Core(TM) i5-1335U",
+    "ram_gb": 7.6,
+    "gpu": "none",
+    "os": "Ubuntu 26.04 LTS"
+  },
+  "throughput": {
+    "tokens_per_second_generation": 9.01,
+    "first_token_latency_ms": 17946.49,
+    "prompt_tokens": 512,
+    "generated_tokens": 128
+  },
+  "memory": {
+    "peak_rss_mb": 2750.79,
+    "steady_state_rss_mb": 2625.69,
+    "peak_vms_mb": 3435.78
+  },
+  "accuracy": [],
+  "cpu_thermal": {
+    "cpu_percent_p99": 50.8,
+    "core_temp_c_peak": null,
+    "throttled": false
+  },
+  "reproducibility": {
+    "git_commit_sha": "1ae240da1af9",
+    "docker_image_digest": "unknown",
+    "random_seed": 42
+  },
+  "model_info": {
+    "params_count": 2614341888,
+    "context_length": 8192,
+    "architecture": "gemma2",
+    "claimed_params_estimate": "2.6B",
+    "params_match": true
+  }
+}

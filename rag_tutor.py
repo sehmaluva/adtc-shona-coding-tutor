@@ -11,7 +11,7 @@ with open("data/syllabus_map.json", "r", encoding="utf-8") as f:
     syllabus = json.load(f)
 
 llm = Llama(
-    model_path="./models/gemma-2-2b-it-Q4_K_M.gguf",
+    model_path="./model/gemma-2-2b-it-Q4_K_M.gguf",
     n_ctx=2048,
     n_threads=8,
     verbose=False
