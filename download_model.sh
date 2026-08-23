@@ -74,3 +74,16 @@ EOF
         exit 1
     fi
 fi
+
+
+REMOTE_SIZE=$(wget --spider --server-response -O /dev/null "$MODEL_URL" 2>&1 \
+    | grep -i "Content-Length" | tail -1 | awk '{print $2}' | tr -d '\r')
+LOCAL_SIZE=$(stat -c%s "$DEST" 2>/dev/null || stat -f%z "$DEST")
+
+if [ -n "$REMOTE_SIZE" ] && [ "$LOCAL_SIZE" != "$REMOTE_SIZE" ]; then
+    echo "File size mismatch: got $LOCAL_SIZE bytes, expected $REMOTE_SIZE bytes."
+    echo "Download is incomplete. Re-run the script to resume."
+    exit 1
+fi
+
+echo "Download complete: $DEST"
