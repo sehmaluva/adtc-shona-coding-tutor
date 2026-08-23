@@ -3,8 +3,9 @@ import psutil
 import os
 import json
 import faiss
-from sentence_transformers import SentenceTransformer
 from llama_cpp import Llama
+
+from embedder import load_embedder
 
 process = psutil.Process(os.getpid())
 
@@ -16,8 +17,8 @@ print("=== ADTC Benchmark: Offline Shona AI Coding Tutor ===\n")
 ram_start = get_ram_mb()
 print(f"[RAM] Before loading anything: {ram_start:.1f} MB")
 
-# Load embedder
-embedder = SentenceTransformer("all-MiniLM-L6-v2")
+# Load embedder from model/all-MiniLM-L6-v2 (offline)
+embedder = load_embedder()
 ram_after_embedder = get_ram_mb()
 print(f"[RAM] After loading embedder: {ram_after_embedder:.1f} MB")
 

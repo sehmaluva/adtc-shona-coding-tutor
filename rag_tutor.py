@@ -2,10 +2,11 @@ import sys
 import json
 import faiss
 import numpy as np
-from sentence_transformers import SentenceTransformer
 from llama_cpp import Llama
 
-embedder = SentenceTransformer("all-MiniLM-L6-v2")
+from embedder import load_embedder
+
+embedder = load_embedder()
 index = faiss.read_index("data/syllabus.index")
 
 with open("data/syllabus_map.json", "r", encoding="utf-8") as f:
@@ -15,7 +16,7 @@ llm = Llama(
     model_path="./model/gemma-2-2b-it-Q4_K_M.gguf",
     n_ctx=2048,
     n_threads=8,
-    verbose=False
+    verbose=False,
 )
 
 SHONA_APOLOGY_PREFIX = """Ndine urombo, handikwanisi kutsanangura nechiShona nekuti
@@ -129,11 +130,11 @@ def generate_practice_questions(topic_query, language="english", num_questions=3
         # Out-of-scope (or no curated Shona questions available):
         # apologize in Shona, then generate English practice questions.
         prompt = f"""<start_of_turn>user
-Generate {num_questions} short beginner-level practice questions about: {topic_query}
-Number them 1, 2, 3. Do not include answers, only the questions.
-<end_of_turn>
-<start_of_turn>model
-"""
+            Generate {num_questions} short beginner-level practice questions about: {topic_query}
+            Number them 1, 2, 3. Do not include answers, only the questions.
+            <end_of_turn>
+            <start_of_turn>model
+            """
         output = llm(prompt, max_tokens=250, stop=["<|end|>"], echo=False)
         english_questions = output["choices"][0]["text"].strip()
         return SHONA_APOLOGY_PREFIX + "\n" + english_questions
@@ -141,25 +142,25 @@ Number them 1, 2, 3. Do not include answers, only the questions.
     # English
     if in_scope:
         context = f"""Topic: {entry['topic']}
-Explanation: {entry['english_explanation']}
-Example code:
-{entry['example_code']}"""
+            Explanation: {entry['english_explanation']}
+            Example code:
+            {entry['example_code']}"""
         prompt = f"""<start_of_turn>user
-Based on the following CS topic, generate {num_questions} short practice questions
-a beginner student could answer to test their understanding. Number them 1, 2, 3.
-Do not include answers, only the questions.
+            Based on the following CS topic, generate {num_questions} short practice questions
+            a beginner student could answer to test their understanding. Number them 1, 2, 3.
+            Do not include answers, only the questions.
 
-{context}
-<end_of_turn>
-<start_of_turn>model
-"""
+            {context}
+            <end_of_turn>
+            <start_of_turn>model
+            """
     else:
         prompt = f"""<start_of_turn>user
-Generate {num_questions} short beginner-level practice questions about: {topic_query}
-Number them 1, 2, 3. Do not include answers, only the questions.
-<end_of_turn>
-<start_of_turn>model
-"""
+        Generate {num_questions} short beginner-level practice questions about: {topic_query}
+        Number them 1, 2, 3. Do not include answers, only the questions.
+        <end_of_turn>
+        <start_of_turn>model
+        """
 
     output = llm(prompt, max_tokens=250, stop=["<|end|>"], echo=False)
     return output["choices"][0]["text"].strip()
@@ -168,7 +169,9 @@ Number them 1, 2, 3. Do not include answers, only the questions.
 def ask_mode():
     """Prompt until a valid mode (1 or 2) is entered."""
     while True:
-        raw = input("Choose mode - (1) Ask a question, (2) Get practice questions: ").strip()
+        raw = input(
+            "Choose mode - (1) Ask a question, (2) Get practice questions: "
+        ).strip()
         if raw in ("1", "2"):
             return raw
         print("Please enter 1 or 2.")
@@ -196,12 +199,20 @@ if __name__ == "__main__":
     lang = ask_language()
 
     if mode == "2":
-        topic_prompt = "Mibvunzo yekudzidzira pamusoro pei? " if lang == "shona" else "Which topic do you want practice questions on? "
+        topic_prompt = (
+            "Mibvunzo yekudzidzira pamusoro pei? "
+            if lang == "shona"
+            else "Which topic do you want practice questions on? "
+        )
         topic = input(topic_prompt)
         print("\n--- Practice Questions ---")
         print(generate_practice_questions(topic, language=lang))
     else:
-        question_prompt = "Bvunza mubvunzo wekodhi: " if lang == "shona" else "Ask a coding question: "
+        question_prompt = (
+            "Bvunza mubvunzo wekodhi: "
+            if lang == "shona"
+            else "Ask a coding question: "
+        )
         question = input(question_prompt)
         print("\n--- Tutor's Answer ---")
         print(answer_question(question, language=lang))

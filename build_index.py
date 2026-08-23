@@ -1,14 +1,15 @@
 import json
 import numpy as np
 import faiss
-from sentence_transformers import SentenceTransformer
+
+from embedder import load_embedder
 
 # Load syllabus
 with open("data/syllabus.json", "r", encoding="utf-8") as f:
     syllabus = json.load(f)
 
-# Load small embedding model
-embedder = SentenceTransformer("all-MiniLM-L6-v2")
+# Load small embedding model from model/all-MiniLM-L6-v2 (offline)
+embedder = load_embedder()
 
 # Combine topic + english_explanation for embedding (this is what gets searched)
 texts = [f"{entry['topic']}. {entry['english_explanation']}" for entry in syllabus]
