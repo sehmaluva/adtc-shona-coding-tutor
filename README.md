@@ -27,7 +27,7 @@ sudo apt update && sudo apt install build-essential cmake -y
 # 4. Install dependencies
 pip install -r requirements.txt
 
-# 5. Download the model (public, no credentials required)
+# 5. Download the GGUF + MiniLM embedder into model/ (public, no credentials)
 bash download_model.sh
 
 # 6. Build the RAG index
