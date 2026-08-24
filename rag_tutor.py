@@ -1,4 +1,5 @@
 import sys
+import re
 import json
 import faiss
 import numpy as np
@@ -27,6 +28,15 @@ tsanangudzo muChirungu (English):
 DISTANCE_THRESHOLD = 1.6
 
 
+def strip_markdown(text):
+    """Remove common Markdown formatting symbols, since output is
+    displayed in a plain-text terminal that does not render Markdown."""
+    text = re.sub(r'\*\*(.*?)\*\*', r'\1', text)  # bold
+    text = re.sub(r'(?<!\*)\*([^*\n]+)\*(?!\*)', r'\1', text)  # italics
+    text = re.sub(r'^#{1,6}\s*', '', text, flags=re.MULTILINE)  # headers
+    return text
+
+
 def retrieve(question, top_k=1):
     """Find the closest syllabus entry and return it with its distance score."""
     query_embedding = embedder.encode([question], convert_to_numpy=True)
@@ -40,10 +50,10 @@ def answer_question(question, language="english"):
     - In-scope (confident match): grounded on curated syllabus content.
     - Out-of-scope, English: the model answers using its own general
       coding knowledge (not syllabus-grounded), so the tutor can still
-      respond sensibly to questions outside the curated 21 topics.
-    - Out-of-scope, Shona: returns a curated fallback message rather
-      than attempting ungrounded Shona generation, which we've confirmed
-      is unreliable (see REPORT.md).
+      respond sensibly to questions outside the curated syllabus.
+    - Out-of-scope, Shona: apologizes in Shona, then gives a real
+      English answer from the model's general knowledge, since we've
+      confirmed free Shona generation is unreliable (see REPORT.md).
     """
     entry, distance = retrieve(question)
     in_scope = distance <= DISTANCE_THRESHOLD
@@ -58,19 +68,17 @@ Muenzaniso wekodhi:
 {entry['example_code']}
 
 Zvinowanzokanganisa: {entry['common_mistakes']}"""
-        # Out-of-scope Shona: apologize in Shona, then give a real
-        # English answer from the model's general knowledge, rather
-        # than refusing outright.
         prompt = f"""<start_of_turn>user
 You are a helpful coding and computer science tutor for beginners.
 Answer the student's question clearly, simply, and accurately.
+Do not use Markdown formatting like ** for bold or # for headers - write in plain text, since this is displayed in a terminal.
 
 Student question: {question}
 <end_of_turn>
 <start_of_turn>model
 """
         output = llm(prompt, max_tokens=300, stop=["<|end|>"], echo=False)
-        english_answer = output["choices"][0]["text"].strip()
+        english_answer = strip_markdown(output["choices"][0]["text"].strip())
         return SHONA_APOLOGY_PREFIX + "\n" + english_answer
 
     # English
@@ -83,6 +91,7 @@ Common mistakes: {entry['common_mistakes']}"""
 
         prompt = f"""<start_of_turn>user
 You are a helpful coding tutor. Use the following reference material to answer the student's question clearly and simply.
+Do not use Markdown formatting like ** for bold or # for headers - write in plain text, since this is displayed in a terminal.
 
 Reference:
 {context}
@@ -92,11 +101,10 @@ Student question: {question}
 <start_of_turn>model
 """
     else:
-        # Out-of-scope: no curated reference material available.
-        # Let the model answer from its own general coding knowledge.
         prompt = f"""<start_of_turn>user
 You are a helpful coding and computer science tutor for beginners.
 Answer the student's question clearly, simply, and accurately.
+Do not use Markdown formatting like ** for bold or # for headers - write in plain text, since this is displayed in a terminal.
 
 Student question: {question}
 <end_of_turn>
@@ -104,7 +112,7 @@ Student question: {question}
 """
 
     output = llm(prompt, max_tokens=300, stop=["<|end|>"], echo=False)
-    return output["choices"][0]["text"].strip()
+    return strip_markdown(output["choices"][0]["text"].strip())
 
 
 def generate_practice_questions(topic_query, language="english", num_questions=3):
@@ -113,9 +121,9 @@ def generate_practice_questions(topic_query, language="english", num_questions=3
     - English, in-scope: generated live using retrieved syllabus context.
     - English, out-of-scope: generated live using the model's general
       knowledge of the requested topic.
-    - Shona: returned directly from curated, human-verified questions
-      when in-scope; curated fallback otherwise (the base model does
-      not reliably generate Shona - see REPORT.md).
+    - Shona, in-scope: returned directly from curated, human-verified
+      questions. Shona, out-of-scope: apologizes in Shona, then gives
+      generated English practice questions.
     """
     entry, distance = retrieve(topic_query)
     in_scope = distance <= DISTANCE_THRESHOLD
@@ -127,43 +135,44 @@ def generate_practice_questions(topic_query, language="english", num_questions=3
                 header = f"Mibvunzo yekudzidzira: {entry['topic']}\n"
                 numbered = "\n".join(f"{i+1}. {q}" for i, q in enumerate(questions))
                 return header + "\n" + numbered
-        # Out-of-scope (or no curated Shona questions available):
-        # apologize in Shona, then generate English practice questions.
         prompt = f"""<start_of_turn>user
-            Generate {num_questions} short beginner-level practice questions about: {topic_query}
-            Number them 1, 2, 3. Do not include answers, only the questions.
-            <end_of_turn>
-            <start_of_turn>model
-            """
+Generate {num_questions} short beginner-level practice questions about: {topic_query}
+Number them 1, 2, 3. Do not include answers, only the questions.
+Do not use Markdown formatting like ** for bold - write in plain text, since this is displayed in a terminal.
+<end_of_turn>
+<start_of_turn>model
+"""
         output = llm(prompt, max_tokens=250, stop=["<|end|>"], echo=False)
-        english_questions = output["choices"][0]["text"].strip()
+        english_questions = strip_markdown(output["choices"][0]["text"].strip())
         return SHONA_APOLOGY_PREFIX + "\n" + english_questions
 
     # English
     if in_scope:
         context = f"""Topic: {entry['topic']}
-            Explanation: {entry['english_explanation']}
-            Example code:
-            {entry['example_code']}"""
+Explanation: {entry['english_explanation']}
+Example code:
+{entry['example_code']}"""
         prompt = f"""<start_of_turn>user
-            Based on the following CS topic, generate {num_questions} short practice questions
-            a beginner student could answer to test their understanding. Number them 1, 2, 3.
-            Do not include answers, only the questions.
+Based on the following CS topic, generate {num_questions} short practice questions
+a beginner student could answer to test their understanding. Number them 1, 2, 3.
+Do not include answers, only the questions.
+Do not use Markdown formatting like ** for bold - write in plain text, since this is displayed in a terminal.
 
-            {context}
-            <end_of_turn>
-            <start_of_turn>model
-            """
+{context}
+<end_of_turn>
+<start_of_turn>model
+"""
     else:
         prompt = f"""<start_of_turn>user
-        Generate {num_questions} short beginner-level practice questions about: {topic_query}
-        Number them 1, 2, 3. Do not include answers, only the questions.
-        <end_of_turn>
-        <start_of_turn>model
-        """
+Generate {num_questions} short beginner-level practice questions about: {topic_query}
+Number them 1, 2, 3. Do not include answers, only the questions.
+Do not use Markdown formatting like ** for bold - write in plain text, since this is displayed in a terminal.
+<end_of_turn>
+<start_of_turn>model
+"""
 
     output = llm(prompt, max_tokens=250, stop=["<|end|>"], echo=False)
-    return output["choices"][0]["text"].strip()
+    return strip_markdown(output["choices"][0]["text"].strip())
 
 
 def ask_mode():

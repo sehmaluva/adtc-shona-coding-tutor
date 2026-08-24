@@ -46,24 +46,33 @@
     "os": "Ubuntu 26.04 LTS"
   },
   "throughput": {
-    "tokens_per_second_generation": 9.01,
-    "first_token_latency_ms": 17946.49,
+    "tokens_per_second_generation": 8.56,
+    "first_token_latency_ms": 17237.49,
     "prompt_tokens": 512,
     "generated_tokens": 128
   },
   "memory": {
-    "peak_rss_mb": 2750.79,
-    "steady_state_rss_mb": 2625.69,
-    "peak_vms_mb": 3435.78
+    "peak_rss_mb": 2750.59,
+    "steady_state_rss_mb": 2636.31,
+    "peak_vms_mb": 3435.75
   },
-  "accuracy": [],
+  "accuracy": [
+    {
+      "benchmark": "arc_easy",
+      "dataset_version": "lm-eval-harness",
+      "language": "en",
+      "samples": 50,
+      "score": 0.72,
+      "metric": "acc_norm"
+    }
+  ],
   "cpu_thermal": {
-    "cpu_percent_p99": 50.8,
+    "cpu_percent_p99": 51.0,
     "core_temp_c_peak": null,
     "throttled": false
   },
   "reproducibility": {
-    "git_commit_sha": "1ae240da1af9",
+    "git_commit_sha": "bc24e9852526",
     "docker_image_digest": "unknown",
     "random_seed": 42
   },
