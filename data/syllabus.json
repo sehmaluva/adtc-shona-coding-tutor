@@ -634,6 +634,71 @@
       "Ndedzipi danho shanu dzeSystematic debugging?",
       "Nei tisingafanirwe kuchinja kodhi yakawanda panguva imwe patinenge tichigadzirisa bug?"
     ]
+  },
+  {
+    "id": "oop_classes_objects",
+    "topic": "Classes and Objects (OOP Basics)",
+    "english_explanation": "A class is a blueprint for creating objects that bundle data (attributes) and behavior (methods) together. An object is a specific instance created from that class, with its own values for the attributes the class defines.",
+    "shona_explanation": "Class muenzaniso (blueprint) wekugadzira ma object anosanganisa data (attributes) nemabasa (methods) pamwe chete. Object muenzaniso chaiwo unosikwa uchibva paclass iyoyo, une ma value awo ega ema attribute akatarwa neclass.",
+    "example_code": "class Student:\n    def __init__(self, name, marks):\n        self.name = name\n        self.marks = marks\n\ns1 = Student(\"Tsungirirai\", 87)\nprint(s1.name)",
+    "common_mistakes": "Forgetting self as the first parameter in methods, or forgetting to call the class like a function (with parentheses) when creating an object.",
+    "practice_questions_shona": [
+      "Class chii uye chinosiyana sei ne object?",
+      "Nyora class inonzi Book ine attributes mbiri: title ne author."
+    ]
+  },
+  {
+    "id": "oop_inheritance",
+    "topic": "Inheritance (OOP)",
+    "english_explanation": "Inheritance lets one class (the child) reuse and extend the attributes and methods of another class (the parent), avoiding duplicated code between related classes.",
+    "shona_explanation": "Inheritance inobvumira imwe class (mwana) kushandisazve uye kuwedzera ma attribute nemamethods eimwe class (mubereki), ichidzivirira kudzokorodza kodhi pakati pema class ane hukama.",
+    "example_code": "class Animal:\n    def speak(self):\n        print(\"Some sound\")\n\nclass Dog(Animal):\n    def speak(self):\n        print(\"Woof\")\n\nDog().speak()",
+    "common_mistakes": "Forgetting to put the parent class name in parentheses when defining the child class, which breaks the inheritance link.",
+    "practice_questions_shona": [
+      "Inheritance inobatsira sei pakudzivirira kudzokorodza kodhi?",
+      "Nyora class inonzi Cat inotorera pane Animal class."
+    ]
+  },
+  {
+    "id": "prog_recursion",
+    "topic": "Recursion",
+    "english_explanation": "Recursion is when a function calls itself to solve a smaller version of the same problem, continuing until it reaches a base case that stops the calls from repeating forever.",
+    "shona_explanation": "Recursion ndeye kuti function inodana pachayo kuti igadzirise dambudziko diki rakafanana neriya rakuru, ichiramba ichidaro kusvikira yasvika pabase case inomisa kudana ikoko kuti kusaramba kuchiitika zvisingaperi.",
+    "example_code": "def countdown(n):\n    if n == 0:\n        print(\"Done!\")\n    else:\n        print(n)\n        countdown(n - 1)\n\ncountdown(3)",
+    "common_mistakes": "Forgetting to define a base case, which causes the function to call itself forever and crash with a stack overflow.",
+    "practice_questions_shona": [
+      "Base case inorevei uye nei ichikosha muRecursion?",
+      "Nyora recursive function inowedzera nhamba kubva pa1 kusvika pa5."
+    ]
+  },
+  {
+    "id": "prog_lambda_functions",
+    "topic": "Lambda Functions",
+    "english_explanation": "A lambda function is a small, unnamed function written in a single line, typically used for short operations passed directly into another function rather than defined separately with def.",
+    "shona_explanation": "Lambda function idiki, function isina zita rakanyorwa pamutsara mumwe chete, kazhinji inoshandiswa pamabasa mapfupi anopfuudzwa mukati meimwe function panzvimbo pekuisikwa yakasiyana uchishandisa def.",
+    "example_code": "square = lambda x: x * x\nprint(square(5))  # 25",
+    "common_mistakes": "Trying to write multiple statements inside a lambda, which isn't allowed - lambdas can only contain a single expression.",
+    "practice_questions_shona": [
+      "Lambda function inosiyana sei nefunction yakajairika (def)?",
+      "Nyora lambda function inowedzera nhamba mbiri."
+    ]
+  },
+  {
+    "id": "prog_installing_packages",
+    "topic": "Installing Python Packages (pip)",
+    "english_explanation": "pip is Python's package manager, used to install external libraries that add extra functionality not built into Python by default, typically run from the command line as 'pip install package-name'.",
+    "shona_explanation": "pip ndiyo package manager yePython, inoshandiswa kuisa ma library ekunze anowedzera mabasa asiri mukati mePython chaiyo, kazhinji ichishandiswa muterminal se'pip install package-name'.",
+    "example_code": "# Run in terminal (not inside a .py file):\n# pip install requests\n\nimport requests  # now available after installing",
+    "common_mistakes": "Running pip commands inside a Python script instead of the terminal, or forgetting to activate the correct virtual environment before installing.",
+    "practice_questions_shona": [
+      "pip inoshandiswa neiko?",
+      "Nyora command yekuisa package inonzi 'numpy' uchishandisa pip."
+    ]
   }
 
 ]
+
+
+
+
+

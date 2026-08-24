@@ -250,5 +250,449 @@
       "Line ipi yaunofanira kutanga kuverenga muTraceback?",
       "Chii chinowanikwa muTraceback?"
     ]
+  },
+  {
+    "id": "algo_tools_intro",
+    "topic": "Introduction to Algorithm Tools",
+    "english_explanation": "An algorithm is a step-by-step set of instructions for solving a problem or completing a task, written in plain language before any code is written. Algorithm tools like flowcharts and pseudocode help you plan a solution clearly before coding it.",
+    "shona_explanation": "Algorithm mutongo wenhanho-nenhanho unotsanangura kugadzirisa dambudziko kana kupedza basa, rakanyorwa nemutauro wakajairika usati wanyora kodhi. Ma algorithm tools senge flowchart ne pseudocode anokubatsira kuronga mhinduro zvakajeka usati wanyora kodhi.",
+    "example_code": "# Example algorithm (plain language, not code):\n# 1. Ask the user for two numbers\n# 2. Add them together\n# 3. Display the result",
+    "common_mistakes": "Jumping straight into writing code without planning the steps first, which often leads to confused or incomplete solutions.",
+    "practice_questions_shona": [
+      "Chii chinonzi algorithm?",
+      "Nei tichifanira kuronga algorithm tisati tanyora kodhi?"
+    ]
+  },
+  {
+    "id": "algo_sequence_construct",
+    "topic": "Sequence Construct",
+    "english_explanation": "Sequence is the simplest algorithm structure, where instructions run one after another in the exact order they are written, from top to bottom, with no branching or repeating.",
+    "shona_explanation": "Sequence ndiyo structure iri nyore yealgorithm, apo mirairo inoshanda imwe mushure meimwe zvichitevedzana sezvayakanyorwa, kubva kumusoro kusvika pasi, pasina kupatsanura kana kudzokorora.",
+    "example_code": "name = input(\"Enter your name: \")\nprint(\"Hello,\", name)\nprint(\"Welcome to the program\")",
+    "common_mistakes": "Assuming steps can run out of order — in a sequence, the order you write instructions is exactly the order they execute.",
+    "practice_questions_shona": [
+      "Sequence construct inorevei?",
+      "Nyora sequence yematatanho matatu anoprinda zita rako, zera rako, uye tsika yako."
+    ]
+  },
+  {
+    "id": "algo_selection_construct",
+    "topic": "Selection Construct (Algorithm Design)",
+    "english_explanation": "Selection is the algorithm structure that allows a program to choose between two or more paths based on a condition, matching the if/else idea but described at the design level before code is written.",
+    "shona_explanation": "Selection structure yealgorithm inobvumira purogiramu kusarudza pakati penzira mbiri kana kupfuura zvichienderana necondition, zvakafanana nepfungwa ye if/else asi ichitsanangurwa padanho rekuronga usati wanyora kodhi.",
+    "example_code": "IF age >= 18 THEN\n    PRINT \"Adult\"\nELSE\n    PRINT \"Minor\"\nENDIF",
+    "common_mistakes": "Designing a selection structure without covering all possible outcomes, leaving some conditions unhandled.",
+    "practice_questions_shona": [
+      "Chii chinosiyanisa selection nesequence?",
+      "Nyora pseudocode ine selection inoongorora kana nhamba iri positive kana negative."
+    ]
+  },
+  {
+    "id": "algo_repetition_construct",
+    "topic": "Repetition Construct (Algorithm Design)",
+    "english_explanation": "Repetition is the algorithm structure that repeats a set of steps multiple times, either a fixed number of times or until a condition is met, matching the idea behind for and while loops.",
+    "shona_explanation": "Repetition structure yealgorithm inodzokorora matanho kakawanda, zvingave kanenge kangani kakatarwa kana kusvikira condition yazadzikiswa, zvakafanana nepfungwa iri seri kwe for ne while loops.",
+    "example_code": "FOR count FROM 1 TO 5\n    PRINT count\nENDFOR",
+    "common_mistakes": "Forgetting to define a clear stopping condition, which can lead to a repetition that never ends.",
+    "practice_questions_shona": [
+      "Repetition construct inoshandiswa riini?",
+      "Nyora pseudocode inodzokorora step kashanu."
+    ]
+  },
+  {
+    "id": "algo_flowcharts",
+    "topic": "Flowcharts",
+    "english_explanation": "A flowchart is a diagram that represents an algorithm using standard shapes: ovals for start/end, rectangles for processes, diamonds for decisions, and arrows to show the flow of steps.",
+    "shona_explanation": "Flowchart mufananidzo unomiririra algorithm uchishandisa zvimiro zvakajairika: ovals dzekutanga/kupedza, rectangles dzemabasa, diamonds dzesarudzo, uye miseve inoratidza mafambiro ematanho.",
+    "example_code": "# Flowchart shapes (described, not code):\n# Oval = Start/End\n# Rectangle = Process (e.g. 'Add numbers')\n# Diamond = Decision (e.g. 'Is score >= 50?')\n# Arrow = Flow direction",
+    "common_mistakes": "Using the wrong shape for a step, such as putting a decision inside a rectangle instead of a diamond, which makes the flowchart hard to read correctly.",
+    "practice_questions_shona": [
+      "Chimiro chipi chinoshandiswa kumiririra sarudzo (decision) muflowchart?",
+      "Nyora flowchart yekuongorora kana nhamba iri jeri kana kwete."
+    ]
+  },
+  {
+    "id": "algo_pseudocode",
+    "topic": "Pseudocode",
+    "english_explanation": "Pseudocode is a way of writing an algorithm using plain, structured language that resembles code but isn't tied to any specific programming language's exact syntax, making it easier to plan logic before coding.",
+    "shona_explanation": "Pseudocode inzira yekunyora algorithm uchishandisa mutauro wakarongeka unofanana nekodhi asi usina kusungirwa pasyntax chaiyo yemutauro wekunyora kodhi wakati, izvo zvinoita kuti kuronga logic kuve nyore usati wanyora kodhi.",
+    "example_code": "BEGIN\n    INPUT score\n    IF score >= 50 THEN\n        OUTPUT \"Pass\"\n    ELSE\n        OUTPUT \"Fail\"\n    ENDIF\nEND",
+    "common_mistakes": "Writing pseudocode that's actually tied to one language's exact syntax (like Python's colon and indentation rules), which defeats the purpose of it being language-independent.",
+    "practice_questions_shona": [
+      "Pseudocode inosiyana sei nekodhi chaiyo?",
+      "Nyora pseudocode inobvunza mushandisi nhamba mbiri wobva waiwedzera."
+    ]
+  },
+  {
+    "id": "algo_topdown_bottomup",
+    "topic": "Top-Down and Bottom-Up Design",
+    "english_explanation": "Top-down design breaks a big problem into smaller sub-problems first, then solves each part, starting from the overall goal. Bottom-up design starts by building small, working pieces first and combines them into the full solution.",
+    "shona_explanation": "Top-down design inotanga nekutsemura dambudziko guru kuita zvidiki-diki (sub-problems), wozogadzirisa chikamu chimwe nechimwe, uchitangira pachinangwa chikuru. Bottom-up design inotanga nekugadzira zvikamu zvidiki zvinoshanda, wozobatanidza pamwe kuita mhinduro yakazara.",
+    "example_code": "# Top-down example: break 'build a calculator app' into:\n# 1. addition function\n# 2. subtraction function\n# 3. menu to choose an operation\n# 4. combine all into one program",
+    "common_mistakes": "Trying to solve the entire problem at once without breaking it down, which usually leads to confusion and errors that are hard to trace.",
+    "practice_questions_shona": [
+      "Musiyano weiko pakati petop-down ne bottom-up design?",
+      "Nyora matatanho matatu ekutsemura dambudziko rekuti 'gadzira system yekutengesa zvekudya' uchishandisa top-down."
+    ]
+  },
+  {
+    "id": "algo_trace_tables",
+    "topic": "Trace Tables (Dry Running)",
+    "english_explanation": "A trace table lets you dry-run an algorithm by hand, tracking how the value of each variable changes step by step as the algorithm executes, which helps catch logic errors before you type any code.",
+    "shona_explanation": "Trace table inokubvumira kufamba nealgorithm nemaoko (dry run), uchitevera kuti value yevariable imwe neimwe inochinja sei danho nedanho sealgorithm ichishanda, izvo zvinobatsira kuwana logic errors usati wanyora kodhi.",
+    "example_code": "# Trace table for: total = 0; for i in [1, 2, 3]: total += i\n# Step | i | total\n#  1   | 1 |   1\n#  2   | 2 |   3\n#  3   | 3 |   6",
+    "common_mistakes": "Skipping steps in the trace table or guessing values instead of carefully working through each iteration, which hides real bugs.",
+    "practice_questions_shona": [
+      "Trace table inoshandiswa kuiteiko?",
+      "Gadzira trace table ye loop inowedzera nhamba kubva pa1 kusvika pa3."
+    ]
+  },
+  {
+    "id": "algo_interpret_debug",
+    "topic": "Interpreting and Debugging Algorithms",
+    "english_explanation": "Before code is written, an algorithm itself can contain logic errors — like an incorrect condition or a missing step — that are found by carefully reading through and interpreting each instruction, often using a trace table.",
+    "shona_explanation": "Kodhi isati yanyorwa, algorithm pachayo inogona kuve neLogic errors — senge condition isiriyo kana danho rasara — izvo zvinowanikwa nekuverenga zvakanyatso uye kududzira murairo umwe neumwe, kazhinji uchishandisa trace table.",
+    "example_code": "# Faulty algorithm:\n# 1. Set total to 0\n# 2. For each number, subtract it from total  <- should be ADD\n# 3. Display total\n# Interpreting this reveals step 2 has the wrong operation",
+    "common_mistakes": "Assuming an algorithm is correct just because it looks organized — logic errors don't cause crashes, they just produce wrong results.",
+    "practice_questions_shona": [
+      "Logic error inosiyana sei neSyntaxError?",
+      "Tarisa algorithm yapihwa wobva wataura danho rine dambudziko."
+    ]
+  },
+  {
+    "id": "algo_project_design",
+    "topic": "Designing an Algorithm for a Full Project",
+    "english_explanation": "Designing an algorithm for a full project means combining sequence, selection, and repetition together to plan every step of a complete solution, from getting input to producing final output, before writing any project code.",
+    "shona_explanation": "Kuronga algorithm yeproject yakazara zvinoreva kubatanidza sequence, selection, ne repetition pamwe chete kuronga danho rega rega remhinduro yakazara, kubva pakutora input kusvika pakuburitsa output yekupedzisira, usati wanyora kodhi yeproject.",
+    "example_code": "# Project algorithm outline:\n# 1. Get student marks (sequence)\n# 2. For each mark, check if it passes (repetition + selection)\n# 3. Count passes and fails\n# 4. Display summary report",
+    "common_mistakes": "Starting to code a large project without first outlining the overall algorithm, which often results in a program that's disorganized and hard to fix.",
+    "practice_questions_shona": [
+      "Nei tichifanira kuronga algorithm yakazara project isati yatanga?",
+      "Ronga algorithm ine sequence, selection, ne repetition yeproject inoverenga marks yevanhu gumi."
+    ]
+  },
+  {
+    "id": "prog_structure",
+    "topic": "Program Structure",
+    "english_explanation": "A well-structured program typically follows an order: getting input, processing the data, and producing output, with related code grouped logically using functions, comments, and consistent indentation.",
+    "shona_explanation": "Purogiramu yakarongeka zvakanaka inowanzotevedzera order: kutora input, kushandisa data, uye kuburitsa output, uye kodhi ine hukama ichisanganiswa zvine musoro uchishandisa functions, comments, uye indentation yakaenzana.",
+    "example_code": "# 1. Input\nname = input(\"Enter name: \")\n# 2. Process\ngreeting = \"Hello, \" + name\n# 3. Output\nprint(greeting)",
+    "common_mistakes": "Writing all logic in one long block with no organization, making the program hard to read and debug later.",
+    "practice_questions_shona": [
+      "Zvikamu zvitatu zvikuru zveprogram structure ndezvipi?",
+      "Nyora muenzaniso weprogram unotevedzera input, process, output."
+    ]
+  },
+  {
+    "id": "prog_operators_arithmetic",
+    "topic": "Arithmetic Operators",
+    "english_explanation": "Arithmetic operators perform mathematical operations on numbers: + for addition, - for subtraction, * for multiplication, / for division, // for floor (whole number) division, and % for remainder (modulus).",
+    "shona_explanation": "Arithmetic operators anoita mabasa emasvomhu pamanhamba: + kuwedzera, - kubvisa, * kupetanidza, / kukamura, // kukamura kuchibva nhamba yakazara (floor division), uye % kusara (modulus).",
+    "example_code": "yield_kg = 17\nbags = yield_kg // 5\nremainder = yield_kg % 5\nprint(bags, remainder)  # 3 2",
+    "common_mistakes": "Confusing / (which gives a decimal result) with // (which gives a whole number result), leading to unexpected data types in calculations.",
+    "practice_questions_shona": [
+      "Musiyano weiko pakati pe / ne //?",
+      "Shandisa % kuwana musara wenhamba 17 kana ukaikamura na5."
+    ]
+  },
+  {
+    "id": "prog_operators_logical",
+    "topic": "Logical Operators",
+    "english_explanation": "Logical operators combine or invert boolean conditions: and requires both conditions to be true, or requires at least one to be true, and not reverses a condition's truth value.",
+    "shona_explanation": "Logical operators anobatanidza kana kushandura ma boolean conditions: and inoda kuti ma conditions ese ari maviri ave echokwadi, or inoda kuti chimwe chete chive chechokwadi, uye not inoshandura chokwadi che condition kuita nhema kana nhema kuita chokwadi.",
+    "example_code": "age = 20\nhas_id = True\nif age >= 18 and has_id:\n    print(\"Allowed entry\")",
+    "common_mistakes": "Using 'and' when the logic actually needs 'or' (or vice versa), which changes the entire outcome of the condition.",
+    "practice_questions_shona": [
+      "Nyora condition inoshandisa 'or' inoongorora kana score iri pamusoro pe90 kana iri 100 chaiyo.",
+      "Chii chinoitwa ne 'not' pa boolean value?"
+    ]
+  },
+  {
+    "id": "prog_operators_relational",
+    "topic": "Relational Operators",
+    "english_explanation": "Relational operators compare two values and return a boolean result: == checks equality, != checks inequality, and <, >, <=, >= compare size.",
+    "shona_explanation": "Relational operators anoenzanisa ma value maviri wobva adzosa mhinduro ye boolean: == inoongorora kuenzana, != inoongorora kusaenzana, uye <, >, <=, >= zvinoenzanisa hukuru.",
+    "example_code": "marks = 65\nprint(marks == 65)   # True\nprint(marks > 50)    # True\nprint(marks != 65)   # False",
+    "common_mistakes": "Using = (assignment) instead of == (comparison) when checking if two values are equal — a very common source of SyntaxError or unexpected logic.",
+    "practice_questions_shona": [
+      "Musiyano weiko pakati pe = ne ==?",
+      "Nyora condition inoongorora kana nhamba mbiri dziri kufanana."
+    ]
+  },
+  {
+    "id": "prog_nested_structures",
+    "topic": "Nested Control Structures",
+    "english_explanation": "Nested control structures place one control structure (like an if statement or loop) inside another, allowing more complex decision-making, such as checking a condition inside each pass of a loop.",
+    "shona_explanation": "Nested control structures dzinoisa imwe control structure (senge if statement kana loop) mukati meimwe, dzichibvumira sarudzo dzakaomarara zvakanyanya, semuenzaniso kuongorora condition mukati mekamwe nekamwe kwe loop.",
+    "example_code": "marks = [45, 78, 90, 30]\nfor m in marks:\n    if m >= 50:\n        print(m, \"Pass\")\n    else:\n        print(m, \"Fail\")",
+    "common_mistakes": "Incorrect indentation when nesting, which causes the inner structure to run at the wrong level or not at all.",
+    "practice_questions_shona": [
+      "Nested structure inorevei?",
+      "Nyora for loop ine if statement mukati mayo inoongorora nhamba dziri even."
+    ]
+  },
+  {
+    "id": "prog_interface_design",
+    "topic": "Interface Design (Text-Based Menus)",
+    "english_explanation": "A simple text-based interface presents the user with numbered options in a loop, reads their choice, and calls the matching action, giving the program a usable structure without a graphical interface.",
+    "shona_explanation": "Interface yakareruka ine manyoro inoratidza mushandisi zvisarudzo zvine nhamba mune loop, inoverenga sarudzo yavo, wobva yadana basa rinoenderana nayo, ichipa purogiramu structure inoshandika pasina graphical interface.",
+    "example_code": "while True:\n    print(\"1. Add student\\n2. View students\\n3. Exit\")\n    choice = input(\"Choose: \")\n    if choice == \"3\":\n        break",
+    "common_mistakes": "Forgetting to handle invalid menu input (like typing a letter instead of a number), which can crash the program if not checked.",
+    "practice_questions_shona": [
+      "Nyora menu ine zvisarudzo zvitatu inoshandisa while loop.",
+      "Nei tichifanira kuongorora input yemushandisi mumenu?"
+    ]
+  },
+  {
+    "id": "prog_error_types_overview",
+    "topic": "Types of Errors Overview",
+    "english_explanation": "Programming errors generally fall into three categories: syntax errors (broken code structure, caught before running), runtime errors (the program crashes while running, like dividing by zero), and logic errors (the program runs but gives the wrong result).",
+    "shona_explanation": "Ma error mukunyora kodhi anowanzowira mumapoka matatu: syntax errors (structure yekodhi yakatyoka, inobatwa kodhi isati yamboita chinhu), runtime errors (purogiramu inodonha ichishanda, semuenzaniso kukamura na0), uye logic errors (purogiramu inoshanda asi ichipa mhinduro isiriyo).",
+    "example_code": "# Syntax error: missing colon\n# if age > 18\n#     print(\"Adult\")\n\n# Runtime error\n# print(10 / 0)\n\n# Logic error: runs fine but gives wrong answer\n# total = a - b   (should be a + b)",
+    "common_mistakes": "Assuming a program with no crash (no runtime or syntax error) is automatically correct — logic errors give wrong answers silently.",
+    "practice_questions_shona": [
+      "Ndeapi mapoka matatu ema error muprogramming?",
+      "Musiyano weiko pakati perutime error ne logic error?"
+    ]
+  },
+  {
+    "id": "prog_error_handling_tryexcept",
+    "topic": "Error Handling with try/except",
+    "english_explanation": "The try/except block lets a program attempt risky code and catch specific errors gracefully instead of crashing, allowing you to show a helpful message and keep the program running.",
+    "shona_explanation": "try/except block inobvumira purogiramu kuedza kodhi ine njodzi uye kubata ma error akati zvakanaka pane kudonha, ichikubvumira kuratidza mashoko anobatsira uye kuramba purogiramu ichishanda.",
+    "example_code": "try:\n    age = int(input(\"Enter your age: \"))\n    print(\"Age next year:\", age + 1)\nexcept ValueError:\n    print(\"Please enter a valid number\")",
+    "common_mistakes": "Using a bare 'except:' that catches every possible error, which can hide real bugs instead of handling the specific one you expected.",
+    "practice_questions_shona": [
+      "try/except inoshandiswa neiko?",
+      "Nyora kodhi inobata ValueError kana mushandisi akanyora manyoro pane nhamba."
+    ]
+  },
+  {
+    "id": "prog_project_coding",
+    "topic": "Writing a Multi-Function Project Program",
+    "english_explanation": "A full project program combines multiple functions, control structures, and data storage (like lists or a database) into one working solution, with each function handling one clear responsibility.",
+    "shona_explanation": "Purogiramu yeproject yakazara inobatanidza ma function akawanda, control structures, uye kuchengetedza data (senge list kana database) muchiuno chimwe chinoshanda, chimwe nechimwe che function chichitakura basa rimwe rakajeka.",
+    "example_code": "def add_student(students, name):\n    students.append(name)\n\ndef show_students(students):\n    for s in students:\n        print(s)\n\nclass_list = []\nadd_student(class_list, \"Tsungirirai\")\nshow_students(class_list)",
+    "common_mistakes": "Writing one giant function that does everything, instead of splitting responsibilities across smaller, testable functions.",
+    "practice_questions_shona": [
+      "Nei tichifanira kupatsanura project muma function mazhinji?",
+      "Nyora function inowedzera zita muList uye imwe inoiratidza."
+    ]
+  },
+  {
+    "id": "prog_project_testing",
+    "topic": "Structured Testing of a Program",
+    "english_explanation": "Structured testing means running a program with a set of planned inputs (including normal, boundary, and invalid cases) and comparing the actual output to the expected output to confirm it works correctly.",
+    "shona_explanation": "Structured testing zvinoreva kushandisa purogiramu neinputs dzakarongwa (kusanganisira dzinowanzoshandiswa, dziri pamuganhu, uye dzisiriyo) uye kuenzanisa output chaiyoyo neyakatarisirwa kuti uone kana ichishanda zvakanaka.",
+    "example_code": "# Test cases for a 'pass or fail' function\n# Input 50  -> Expected: Pass (boundary)\n# Input 49  -> Expected: Fail\n# Input -5  -> Expected: Invalid input",
+    "common_mistakes": "Only testing with normal expected inputs and skipping boundary or invalid cases, which lets bugs slip through undetected.",
+    "practice_questions_shona": [
+      "Nei tichifanira kuongorora boundary cases patesting?",
+      "Ronga test cases nhatu dzefunction inoongorora kana nhamba iri positive."
+    ]
+  },
+  {
+    "id": "prog_fstrings",
+    "topic": "String Formatting with f-strings",
+    "english_explanation": "An f-string lets you embed variable values directly inside a string by placing an f before the quotes and putting variable names inside curly braces, making output easier to build and read.",
+    "shona_explanation": "F-string inokubvumira kuisa ma value evariable mukati memanyoro nekuisa f pamberi pema quote uye kuisa mazita evariable mukati me curly braces, izvo zvinoita kuti kugadzira nekuverenga output zvive nyore.",
+    "example_code": "name = \"Tsungirirai\"\nscore = 87\nprint(f\"{name} scored {score} marks\")",
+    "common_mistakes": "Forgetting the f before the opening quote, which causes the curly braces to print literally instead of inserting the variable's value.",
+    "practice_questions_shona": [
+      "F-string inobatsira sei pakunyora output?",
+      "Nyora f-string inoratidza zita nezera remunhu."
+    ]
+  },
+  {
+    "id": "prog_file_io",
+    "topic": "Reading and Writing Files",
+    "english_explanation": "Python can read from and write to files on disk using open(), with modes like 'r' for reading, 'w' for writing (overwrites existing content), and 'a' for appending (adds to the end without erasing).",
+    "shona_explanation": "Python inogona kuverenga uye kunyora mufiles ari mucomputer uchishandisa open(), ine ma mode akaita se'r' kuverenga, 'w' kunyora (inodzima zvakanyorwa kare), uye 'a' kuwedzera (inowedzera kumagumo isingadzimi zvakanyorwa).",
+    "example_code": "with open(\"scores.txt\", \"w\") as file:\n    file.write(\"Tsungirirai: 87\\n\")\n\nwith open(\"scores.txt\", \"r\") as file:\n    print(file.read())",
+    "common_mistakes": "Using mode 'w' when you meant to add to a file, which silently erases everything that was already in it.",
+    "practice_questions_shona": [
+      "Musiyano weiko pakati pemamode 'w' ne 'a'?",
+      "Nyora kodhi inonyora zita rako mufile inonzi 'names.txt'."
+    ]
+  },
+  {
+    "id": "prog_list_comprehension",
+    "topic": "List Comprehensions",
+    "english_explanation": "A list comprehension is a compact way to build a new list by transforming or filtering items from an existing list in a single line, instead of writing a full for loop.",
+    "shona_explanation": "List comprehension inzira ipfupi yekugadzira list itsva nekushandura kana kusarudza zvinhu kubva mune imwe list iripo mumutsara mumwe chete, panzvimbo pekunyora for loop yakazara.",
+    "example_code": "yields = [8, 15, 3, 20, 12]\nbig_yields = [y for y in yields if y >= 10]\nprint(big_yields)  # [15, 20, 12]",
+    "common_mistakes": "Cramming too much complex logic into a single comprehension, making it harder to read than a plain for loop would have been.",
+    "practice_questions_shona": [
+      "List comprehension inobatsira sei pane for loop yakazara?",
+      "Nyora list comprehension inosarudza nhamba dziri pasi pe10 kubva munhamba dzakapihwa."
+    ]
+  },
+  {
+    "id": "debug_valueerror",
+    "topic": "Understanding ValueError",
+    "english_explanation": "A ValueError happens when a function receives an argument of the right type but an inappropriate value, such as trying to convert text that isn't a number into an integer.",
+    "shona_explanation": "ValueError inoitika kana function ikagamuchira argument ine rudzi rwakakodzera asi ine value isina kukodzera, senge kuedza kushandura manyoro asiri nhamba kuita integer.",
+    "example_code": "age = int(\"twenty\")  # ValueError: invalid literal for int() with base 10: 'twenty'",
+    "common_mistakes": "Converting user input with int() without checking first whether the text is actually a valid number.",
+    "practice_questions_shona": [
+      "ValueError inosiyana sei neTypeError?",
+      "Nyora muenzaniso wekodhi inokonzeresa ValueError."
+    ]
+  },
+  {
+    "id": "debug_zerodivisionerror",
+    "topic": "Understanding ZeroDivisionError",
+    "english_explanation": "A ZeroDivisionError occurs when your code tries to divide a number by zero, which is mathematically undefined and always causes a crash in Python.",
+    "shona_explanation": "ZeroDivisionError inoitika kana kodhi yako ikaedza kukamura nhamba na0, izvo zvisina musimboti mumasvomhu uye zvinogara zvichikonzera purogiramu kudonha muPython.",
+    "example_code": "total = 10\ncount = 0\naverage = total / count  # ZeroDivisionError: division by zero",
+    "common_mistakes": "Dividing by a variable (like a count from a list) without first checking that it isn't zero, especially when the list could be empty.",
+    "practice_questions_shona": [
+      "Nei kukamura na0 kuchikonzera error?",
+      "Nyora kodhi inotanga yaongorora kuti denominator haisi 0 isati yakamura."
+    ]
+  },
+  {
+    "id": "debug_keyerror",
+    "topic": "Understanding KeyError",
+    "english_explanation": "A KeyError occurs when you try to access a dictionary using a key that doesn't exist in it.",
+    "shona_explanation": "KeyError inoitika kana ukaedza kuwana chinhu mudictionary uchishandisa key isipo mairi.",
+    "example_code": "student = {\"name\": \"Tsungirirai\"}\nprint(student[\"age\"])  # KeyError: 'age'",
+    "common_mistakes": "Assuming a key exists without checking first — using .get(\"key\") instead of [\"key\"] avoids crashing and returns None if it's missing.",
+    "practice_questions_shona": [
+      "KeyError inoitika riini?",
+      "Ungadzivirira sei KeyError uchishandisa .get()?"
+    ]
+  },
+  {
+    "id": "debug_attributeerror",
+    "topic": "Understanding AttributeError",
+    "english_explanation": "An AttributeError happens when you try to call a method or access an attribute that doesn't exist for that data type, such as calling a string method on an integer.",
+    "shona_explanation": "AttributeError inoitika kana ukaedza kudana method kana kuwana attribute isipo pane rudzi rweiyo data, semuenzaniso kudana method yestring paintiger.",
+    "example_code": "age = 20\nprint(age.upper())  # AttributeError: 'int' object has no attribute 'upper'",
+    "common_mistakes": "Forgetting what data type a variable actually is and calling a method that only works on a different type, like using .upper() on a number.",
+    "practice_questions_shona": [
+      "AttributeError inorevei?",
+      "Nei .upper() isingashande pa integer?"
+    ]
+  },
+  {
+    "id": "debug_indentationerror",
+    "topic": "Understanding IndentationError",
+    "english_explanation": "An IndentationError happens specifically when the spacing at the start of lines doesn't match what Python expects, such as mixing tabs and spaces or forgetting to indent inside a block.",
+    "shona_explanation": "IndentationError inoitika chaizvo kana spacing pakutanga kwemitsara isingaenderane nezvinotarisirwa naPython, semuenzaniso kusanganisa tabs ne spaces kana kukanganwa kuisa indentation mukati me block.",
+    "example_code": "if age >= 18:\nprint(\"Adult\")  # IndentationError: expected an indented block",
+    "common_mistakes": "Mixing tabs and spaces in the same file, which can look correct visually but Python treats them as different indentation levels.",
+    "practice_questions_shona": [
+      "IndentationError inosiyana sei neSyntaxError?",
+      "Gadzirisa kodhi ine IndentationError yapihwa."
+    ]
+  },
+  {
+    "id": "debug_infinite_loop",
+    "topic": "Debugging an Infinite Loop",
+    "english_explanation": "An infinite loop happens when the loop's stopping condition is never met, usually because the loop variable is never updated inside the loop, causing the program to run forever without stopping.",
+    "shona_explanation": "Infinite loop inoitika kana condition yekumisa loop isati yasvikirwa zvachose, kazhinji nekuti loop variable haichinjwe mukati me loop, izvo zvinoita kuti purogiramu ishande zvisingaperi isingamiri.",
+    "example_code": "count = 0\nwhile count < 5:\n    print(count)\n# Missing count += 1 here causes an infinite loop",
+    "common_mistakes": "Forgetting to update the loop control variable inside the loop body, which is the most common cause of an infinite loop.",
+    "practice_questions_shona": [
+      "Chii chinowanzokonzera infinite loop?",
+      "Gadzirisa kodhi iyi kuti isaite infinite loop."
+    ]
+  },
+  {
+    "id": "debug_off_by_one",
+    "topic": "Off-by-One Errors",
+    "english_explanation": "An off-by-one error happens when a loop or index is exactly one position too far or too short, commonly caused by confusing 0-based indexing or getting range() boundaries wrong.",
+    "shona_explanation": "Off-by-one error inoitika kana loop kana index iri kure kana kupfupika nechinzvimbo chimwe chete, kazhinji ichikonzerwa nekusanganisa 0-based indexing kana kukanganisa maganhu erange().",
+    "example_code": "numbers = [10, 20, 30]\nfor i in range(1, len(numbers)):  # skips index 0, off by one\n    print(numbers[i])",
+    "common_mistakes": "Using range(1, len(list)) when you meant range(0, len(list)), accidentally skipping the first item.",
+    "practice_questions_shona": [
+      "Nei off-by-one errors dzichiwanzoitika pama loop?",
+      "Gadzirisa kodhi ine off-by-one error muloop yapihwa."
+    ]
+  },
+  {
+    "id": "debug_print_tracing",
+    "topic": "Debugging Strategy: Using print() to Trace a Bug",
+    "english_explanation": "Placing temporary print() statements at key points in your code lets you see the actual value of variables as the program runs, helping you narrow down exactly where the logic goes wrong.",
+    "shona_explanation": "Kuisa ma print() enguva pfupi panzvimbo dzakakosha mukodhi yako kunokubvumira kuona value chaiyo yema variable purogiramu ichishanda, izvo zvinobatsira kuwana chaizvo kuti logic inotanga kukanganisa papi.",
+    "example_code": "total = 0\nfor num in [5, 10, 15]:\n    print(\"Before:\", total)\n    total += num\n    print(\"After:\", total)",
+    "common_mistakes": "Leaving debug print() statements in the final version of the program instead of removing them once the bug is fixed.",
+    "practice_questions_shona": [
+      "Nei tichishandisa print() patinenge tichitsvaga bug?",
+      "Isa maprint statement anokubatsira kuwana kuti loop yapihwa inokanganisa papi."
+    ]
+  },
+  {
+    "id": "debug_systematic_approach",
+    "topic": "Reading Error Messages Systematically",
+    "english_explanation": "A systematic approach to debugging means reading the full error message calmly, identifying the error type and line number, checking the code at that exact line, and testing one small fix at a time rather than guessing randomly.",
+    "shona_explanation": "Nzira yakarongeka yekugadzirisa bug zvinoreva kuverenga error message yakazara nekudzikama, kuona rudzi rweerror nenhamba yeline, kuongorora kodhi paline chairo, uye kuedza kugadzirisa kuchete kamwe nekamwe pane kufembera zvisina musimboti.",
+    "example_code": "# Systematic debugging steps:\n# 1. Read the last line of the error first\n# 2. Note the error type and line number\n# 3. Go to that line in your code\n# 4. Make one small change, then re-run\n# 5. Repeat if the error persists",
+    "common_mistakes": "Randomly changing multiple lines of code at once when trying to fix a bug, which makes it hard to know which change actually fixed (or broke) something.",
+    "practice_questions_shona": [
+      "Ndedzipi danho shanu dzeSystematic debugging?",
+      "Nei tisingafanirwe kuchinja kodhi yakawanda panguva imwe patinenge tichigadzirisa bug?"
+    ]
+  },
+  {
+    "id": "oop_classes_objects",
+    "topic": "Classes and Objects (OOP Basics)",
+    "english_explanation": "A class is a blueprint for creating objects that bundle data (attributes) and behavior (methods) together. An object is a specific instance created from that class, with its own values for the attributes the class defines.",
+    "shona_explanation": "Class muenzaniso (blueprint) wekugadzira ma object anosanganisa data (attributes) nemabasa (methods) pamwe chete. Object muenzaniso chaiwo unosikwa uchibva paclass iyoyo, une ma value awo ega ema attribute akatarwa neclass.",
+    "example_code": "class Student:\n    def __init__(self, name, marks):\n        self.name = name\n        self.marks = marks\n\ns1 = Student(\"Tsungirirai\", 87)\nprint(s1.name)",
+    "common_mistakes": "Forgetting self as the first parameter in methods, or forgetting to call the class like a function (with parentheses) when creating an object.",
+    "practice_questions_shona": [
+      "Class chii uye chinosiyana sei ne object?",
+      "Nyora class inonzi Book ine attributes mbiri: title ne author."
+    ]
+  },
+  {
+    "id": "oop_inheritance",
+    "topic": "Inheritance (OOP)",
+    "english_explanation": "Inheritance lets one class (the child) reuse and extend the attributes and methods of another class (the parent), avoiding duplicated code between related classes.",
+    "shona_explanation": "Inheritance inobvumira imwe class (mwana) kushandisazve uye kuwedzera ma attribute nemamethods eimwe class (mubereki), ichidzivirira kudzokorodza kodhi pakati pema class ane hukama.",
+    "example_code": "class Animal:\n    def speak(self):\n        print(\"Some sound\")\n\nclass Dog(Animal):\n    def speak(self):\n        print(\"Woof\")\n\nDog().speak()",
+    "common_mistakes": "Forgetting to put the parent class name in parentheses when defining the child class, which breaks the inheritance link.",
+    "practice_questions_shona": [
+      "Inheritance inobatsira sei pakudzivirira kudzokorodza kodhi?",
+      "Nyora class inonzi Cat inotorera pane Animal class."
+    ]
+  },
+  {
+    "id": "prog_recursion",
+    "topic": "Recursion",
+    "english_explanation": "Recursion is when a function calls itself to solve a smaller version of the same problem, continuing until it reaches a base case that stops the calls from repeating forever.",
+    "shona_explanation": "Recursion ndeye kuti function inodana pachayo kuti igadzirise dambudziko diki rakafanana neriya rakuru, ichiramba ichidaro kusvikira yasvika pabase case inomisa kudana ikoko kuti kusaramba kuchiitika zvisingaperi.",
+    "example_code": "def countdown(n):\n    if n == 0:\n        print(\"Done!\")\n    else:\n        print(n)\n        countdown(n - 1)\n\ncountdown(3)",
+    "common_mistakes": "Forgetting to define a base case, which causes the function to call itself forever and crash with a stack overflow.",
+    "practice_questions_shona": [
+      "Base case inorevei uye nei ichikosha muRecursion?",
+      "Nyora recursive function inowedzera nhamba kubva pa1 kusvika pa5."
+    ]
+  },
+  {
+    "id": "prog_lambda_functions",
+    "topic": "Lambda Functions",
+    "english_explanation": "A lambda function is a small, unnamed function written in a single line, typically used for short operations passed directly into another function rather than defined separately with def.",
+    "shona_explanation": "Lambda function idiki, function isina zita rakanyorwa pamutsara mumwe chete, kazhinji inoshandiswa pamabasa mapfupi anopfuudzwa mukati meimwe function panzvimbo pekuisikwa yakasiyana uchishandisa def.",
+    "example_code": "square = lambda x: x * x\nprint(square(5))  # 25",
+    "common_mistakes": "Trying to write multiple statements inside a lambda, which isn't allowed - lambdas can only contain a single expression.",
+    "practice_questions_shona": [
+      "Lambda function inosiyana sei nefunction yakajairika (def)?",
+      "Nyora lambda function inowedzera nhamba mbiri."
+    ]
+  },
+  {
+    "id": "prog_installing_packages",
+    "topic": "Installing Python Packages (pip)",
+    "english_explanation": "pip is Python's package manager, used to install external libraries that add extra functionality not built into Python by default, typically run from the command line as 'pip install package-name'.",
+    "shona_explanation": "pip ndiyo package manager yePython, inoshandiswa kuisa ma library ekunze anowedzera mabasa asiri mukati mePython chaiyo, kazhinji ichishandiswa muterminal se'pip install package-name'.",
+    "example_code": "# Run in terminal (not inside a .py file):\n# pip install requests\n\nimport requests  # now available after installing",
+    "common_mistakes": "Running pip commands inside a Python script instead of the terminal, or forgetting to activate the correct virtual environment before installing.",
+    "practice_questions_shona": [
+      "pip inoshandiswa neiko?",
+      "Nyora command yekuisa package inonzi 'numpy' uchishandisa pip."
+    ]
   }
 ]
