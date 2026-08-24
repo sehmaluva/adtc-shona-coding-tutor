@@ -4,6 +4,8 @@
 **Domain:** coding_assistants
 **Model:** gemma-2-2b-it-Q4_K_M
 
+**Runtime:** local `llama.cpp` inference with a local `all-MiniLM-L6-v2` embedder and FAISS index
+
 ---
 
 ## Problem
@@ -29,11 +31,12 @@ This is a first-hand problem for our team: we draw on lived experience from Gokw
 
 ## Constraints
 
-- **Target hardware:** 8 GB RAM, integrated GPU (no discrete GPU), Ubuntu 22.04 LTS — matches the ADTC Standard Laptop profile.
+- **Target hardware:** 8 GB RAM, integrated GPU (no discrete GPU), Ubuntu 26.04 LTS in the recorded participant run — matches the ADTC Standard Laptop profile.
 - **No GPU acceleration** — pure CPU inference via `llama.cpp` throughout. We explicitly removed a default GPU-enabled PyTorch install in favor of the CPU-only build to avoid unnecessary bloat, since our target hardware has no CUDA-capable GPU.
 - **Connectivity constraint:** the application must function with zero internet dependency once the model is downloaded — this shaped our choice of RAG (retrieval over a local knowledge base) instead of any live API calls or cloud-based translation for Shona content.
 - **Data availability constraint:** no existing Shona-language CS education dataset was available, so our syllabus (21 topics, English + Shona explanations, examples, and practice questions) was authored directly by the team rather than sourced.
 - **Language input constraint (discovered during testing):** the sentence-embedding model used for retrieval (`all-MiniLM-L6-v2`) does not reliably match fully Shona-language questions to our syllabus (measured embedding similarity as low as 0.15 for a genuine topic match). It does reliably match *code-switched* questions — Shona sentence structure with an embedded English technical term (e.g. "Chii chinonzi for loop"). We scoped and documented this rather than overclaiming full bilingual input support.
+- **Runtime context and CPU settings:** the application uses a 2,048-token llama.cpp context and eight CPU threads. The bundled Gemma model advertises an 8,192-token model context, but the smaller application context keeps resource use appropriate for the target laptop.
 
 ## Benchmarks
 
@@ -51,9 +54,11 @@ This is a first-hand problem for our team: we draw on lived experience from Gokw
 
 | Metric | Value |
 |---|---|
-| Machine | Intel i5-1335U, 7.6GB RAM, no GPU, Ubuntu |
+| Machine | 13th Gen Intel Core i5-1335U, 7.6GB RAM, no GPU, Ubuntu 26.04 LTS |
 | Peak RSS | 2.75 GB |
-| Generation speed | 9.01–10.41 t/s (two runs, normal CPU benchmark variance) |
+| Generation speed | 9.01 t/s (official participant run; local benchmark observed 9.67 t/s) |
+| First-token latency | 17,946 ms |
+| Steady-state RSS | 2.63 GB |
 | CPU utilization (p99) | 50.7–50.8% |
 | Thermal throttling | None (`throttled: false`) |
 | Parameter count | 2,614,341,888 (confirmed match against declared 2.6B estimate) |
@@ -62,8 +67,8 @@ These official figures are measured by the ADTC profiler on our development mach
 
 ## Additional Notes
 
-**Practice question generation:** beyond direct Q&A, the tutor can generate topic-specific practice questions — English questions are generated live by the model using retrieved syllabus context; Shona questions are drawn from a curated set (same accuracy rationale as explanations).
+**Practice question generation:** beyond direct Q&A, the tutor supports a separate practice mode. English questions are generated live by the model, using retrieved syllabus context when the topic is in scope and general model knowledge otherwise. In-scope Shona questions are drawn from the curated set. For an out-of-scope Shona topic, the tutor explains the limitation in Shona and supplies generated English questions.
 
-**Retrieval accuracy safeguard:** we tuned a similarity-distance threshold (FAISS L2, threshold = 1.4) so that out-of-scope questions trigger an honest fallback message rather than a confidently wrong answer, validated against exact-match (distance ≈ 0.42), paraphrased (≈ 1.10), and off-topic (≈ 1.94) test cases.
+**Retrieval accuracy safeguard:** we use a FAISS L2 distance threshold of `1.6` so that clearly out-of-scope questions do not get presented as grounded syllabus answers. The threshold is applied consistently to both answer and practice-question retrieval. Exact-match, paraphrased, and off-topic distance examples should be treated as development observations rather than universal guarantees because the values depend on the embedding model and index contents.
 
-**Known limitations:** question input is reliable in English and in code-switched Shona (with an embedded English technical term), but not in fully Shona phrasing without an English term present; Shona output is curated rather than freely generated; the syllabus is scoped to 21 core CS topics.
+**Known limitations:** question input is reliable in English and in code-switched Shona (with an embedded English technical term), but not in fully Shona phrasing without an English term present; in-scope Shona output is curated rather than freely generated; out-of-scope Shona responses are bilingual fallback responses rather than Shona model generations; the syllabus is scoped to 21 core CS topics; and the application requires the model files and generated FAISS index to be present locally.
