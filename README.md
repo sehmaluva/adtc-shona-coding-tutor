@@ -13,7 +13,7 @@ This submission runs **Gemma-2-2b-it Q4_K_M** through llama.cpp on CPU only, wit
 - Fully offline runtime after setup: Gemma-2-2b-it Q4_K_M inference through llama.cpp, with a local MiniLM embedder and FAISS index
 - Two interactive modes: ask a coding question or generate topic-specific practice questions
 - English and Shona support, including shorthand language selection (`en`/`e`/`1` and `sn`/`s`/`0`)
-- Retrieval-augmented answers from a curated **53-topic** Python and CS syllabus
+- Retrieval-augmented answers from a curated **58-topic** Python and CS syllabus
 - Curated, human-verified Shona explanations and practice questions for in-scope topics
 - Live English generation for in-scope answers and practice questions, grounded in retrieved syllabus context
 - Honest out-of-scope handling: English requests receive a general coding answer; Shona requests receive a Shona apology followed by an English answer
@@ -94,7 +94,7 @@ flowchart LR
 
 ## Syllabus Coverage
 
-53 topics total, grouped as follows:
+58 topics total, grouped as follows:
 
 - **Python basics (3):** Variables · Data Types (int, float, str, bool) · Input and Output (input(), print())
 - **Control flow (3):** If/Else Conditionals · For Loops · While Loops
@@ -103,7 +103,8 @@ flowchart LR
 - **Algorithms and reasoning (4):** Sorting Numbers · Linear Search · Binary Search · Big-O Notation (Why Some Code Is Slow)
 - **Debugging (14):** SyntaxError · TypeError · IndexError · NameError · Tracebacks · ValueError · ZeroDivisionError · KeyError · AttributeError · IndentationError · Infinite loops · Off-by-one errors · print()-based tracing · Reading error messages systematically
 - **Algorithm design tools (10):** Algorithm tools intro · Sequence · Selection · Repetition · Flowcharts · Pseudocode · Top-down/bottom-up design · Trace tables · Interpreting/debugging algorithms · Full-project algorithm design
-- **Program structure and operators (13):** Program structure · Arithmetic/logical/relational operators · Nested control · Text-based menus · Error types overview · try/except · Multi-function projects · Structured testing · f-strings · File I/O · List comprehensions
+- **Object-oriented programming (2):** Classes and Objects (OOP Basics) · Inheritance (OOP)
+- **Program structure and operators (16):** Program structure · Arithmetic/logical/relational operators · Nested control · Text-based menus · Error types overview · try/except · Multi-function projects · Structured testing · f-strings · File I/O · List comprehensions · Recursion · Lambda functions · Installing Python packages (pip)
 
 ## Checking Performance
 
@@ -133,7 +134,7 @@ See [REPORT.md](REPORT.md) for full design rationale, constraints, benchmarks, a
 │   ├── gemma-2-2b-it-Q4_K_M.gguf
 │   └── all-MiniLM-L6-v2/
 ├── data/
-│   ├── syllabus.json      # Curated CS syllabus (English + Shona, 53 topics)
+│   ├── syllabus.json      # Curated CS syllabus (English + Shona, 58 topics)
 │   ├── syllabus_map.json  # Generated lookup used by the RAG pipeline
 │   └── syllabus.index     # Generated FAISS index
 ├── rag_tutor.py           # Main application (CLI tutor)
